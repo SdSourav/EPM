@@ -152,18 +152,13 @@ a{color:var(--indigo);font-weight:600}
   <nav id="nav">
     <button data-tab="report" class="active">📑 Report ⭐</button>
     <button data-tab="defense">Defense</button>
-    <button data-tab="exam">Exam Mode</button>
-    <button data-tab="basics">PM Basics</button>
-    <button data-tab="lifecycle">Lifecycle & Tools</button>
-    <button data-tab="frameworks">Frameworks</button>
-    <button data-tab="foundations">Scrum</button>
-    <button data-tab="team">Team & Events</button>
-    <button data-tab="artifacts">Artifacts</button>
-    <button data-tab="scaling">Scaling</button>
-    <button data-tab="antipatterns">Antipatterns</button>
-    <button data-tab="devops">DevOps</button>
-    <button data-tab="teamdyn">Team Dynamics</button>
-    <button data-tab="ai">AI in PM</button>
+    <button data-tab="intro">Introduction</button>
+    <button data-tab="pm-frameworks">PM Frameworks</button>
+    <button data-tab="leadership">Leadership, Teamwork and Stakeholders in PM</button>
+    <button data-tab="scrum">SCRUM</button>
+    <button data-tab="scrum-indepth">Scrum in-depth, Antipatterns and DevOps</button>
+    <button data-tab="team-dynamics">Team Dynamics</button>
+    <button data-tab="ai-pm">AI in PM and Project Descriptions</button>
     <button data-tab="papers">Research Papers</button>
     <button data-tab="glossary">Glossary 🔤</button>
     <button data-tab="hooks">Hooks 🧠</button>
@@ -396,7 +391,7 @@ a{color:var(--indigo);font-weight:600}
 </section>
 
 <!-- ================= PM BASICS (Lecture 1) ================= -->
-<section class="tab" id="basics">
+<section class="tab" id="intro">
   <div class="card">
     <h2>Project, Program, Portfolio — the definitions (Lecture 1)</h2>
     <p>Organizations combine two types of work — <b>projects and operations</b>. Both are performed by people,
@@ -484,10 +479,8 @@ a{color:var(--indigo);font-weight:600}
       <li><b>Opponent rules:</b> study the paper, prepare <b>3 questions focused on theory, methods, findings</b>; coordinate with the other opponent so questions don't overlap; do <b>not</b> ask for the presenter's personal opinions ("what do you think of the paper?", "what if it was done in Europe?" are bad questions).</li>
     </ul>
   </div>
-</section>
 
 <!-- ================= LIFECYCLE & TOOLS (Lecture 2) ================= -->
-<section class="tab" id="lifecycle">
   <div class="card">
     <h2>The project life cycle — 4 phases (Lecture 2)</h2>
     <div class="scrum-flow">1. PROJECT DEFINITION → 2. PROJECT PLANNING → 3. PROJECT EXECUTION → 4. PROJECT CLOSING</div>
@@ -701,7 +694,7 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
 </section>
 
 <!-- ================= FRAMEWORKS (Lecture 2) ================= -->
-<section class="tab" id="frameworks">
+<section class="tab" id="pm-frameworks">
   <div class="card">
     <h2>PM frameworks: linear vs iterative</h2>
     <p><b>Linear approaches</b>: Waterfall, Stage-Gate. <b>Iterative approaches</b>: Scrum (and agile generally).
@@ -862,8 +855,60 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
   </div>
 </section>
 
+<!-- ================= LEADERSHIP, TEAMWORK & STAKEHOLDERS ================= -->
+<section class="tab" id="leadership">
+  <div class="card">
+    <h2>The Project Leader vs The Project Manager (Lecture 4)</h2>
+    <p>A project manager manages people who are professionals in their technical area and more skilled than the manager. <b>We need both management and leadership in projects!</b></p>
+    <table>
+      <tr><th>Management</th><th>Leadership</th></tr>
+      <tr><td>The manager <b>administrates</b>, maintains, focuses on systems and structure</td><td>The leader <b>innovates</b>, develops, focuses on people</td></tr>
+      <tr><td>Relies on <b>control</b>, asks <b>how and when</b></td><td>Inspires <b>trust</b>, asks <b>what and why</b></td></tr>
+      <tr><td>Has a <b>short-range view</b>, eyes on the bottom line</td><td>Has a <b>long-range perspective</b>, eyes on the horizon</td></tr>
+      <tr><td>Accepts the status quo, does things <b>right</b></td><td>Challenges the status quo, does the <b>right thing</b></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>Stakeholders Management — The 3 Steps (Lecture 4)</h2>
+    <div class="callout"><b>📌 What is a stakeholder?</b>
+    Any person, organization, social group, or society at large that has a <b>stake in the business</b> (internal or external). Examples: project owner, user, buyer, approver, financer, or anyone affected positively/negatively.</div>
+    <div class="scrum-flow">1. IDENTIFY → 2. MAP / CATEGORIZE → 3. DEVELOP STRATEGY & ACTION PLAN</div>
+    <h3>Step 1: Identify and List</h3>
+    <ul>
+      <li>Who will be impacted by the project? Who will be responsible/accountable?</li>
+      <li>Who has decision authority? Who can support or obstruct the project?</li>
+    </ul>
+
+    <h3>Step 2: Map / Categorise (The Matrices)</h3>
+    <p>We map stakeholders on matrices to understand their role. <b>Matrix 1 (Influence vs. Interest):</b></p>
+    <table>
+      <tr><th>Category</th><th>Characteristics</th><th>Action Plan</th></tr>
+      <tr><td><b>Key Players</b></td><td>High Influence, High Interest</td><td><b>To be involved</b>. Utilise support to gain resources, overcome issues, push agenda.</td></tr>
+      <tr><td><b>Working Bees</b></td><td>High Influence, Low Interest</td><td><b>To be kept satisfied</b>. Try to get project team members from this group; use their energy.</td></tr>
+      <tr><td><b>The Grey Eminence</b></td><td>Low Influence, High Interest</td><td><b>To be kept informed</b>. Try to move this group up or left. Invest in 1-on-1 communication.</td></tr>
+      <tr><td><b>External Stakeholders</b></td><td>Low Influence, Low Interest</td><td><b>To be briefed</b>. Use mass communication to move them upwards; monitor actions.</td></tr>
+    </table>
+
+    <h3>Matrix 2: Attitude / Power / Interest</h3>
+    <ul>
+      <li><b>Saviour</b>: + Attitude, + Power, + Interest</li>
+      <li><b>Friend</b>: + Attitude, - Power, + Interest</li>
+      <li><b>Saboteur</b>: - Attitude, + Power, + Interest</li>
+      <li><b>Irritant</b>: - Attitude, - Power, + Interest</li>
+      <li><b>Time Bomb</b>: - Attitude, + Power, - Interest</li>
+      <li><b>Sleeping Giant</b>: + Attitude, + Power, - Interest</li>
+      <li><b>Acquaintance</b>: + Attitude, - Power, - Interest</li>
+      <li><b>Trip Wire</b>: - Attitude, - Power, - Interest</li>
+    </ul>
+
+    <h3>Step 3: Develop Strategy and Action Plan</h3>
+    <p>The goal is to <b>move stakeholders to a favourable position</b> and <b>keep them there</b>. The primary tool is <b>Communication</b> (Professional/formal vs Personal/informal, Scheduled vs Non-scheduled).</p>
+  </div>
+</section>
+
 <!-- ================= FOUNDATIONS ================= -->
-<section class="tab" id="foundations">
+<section class="tab" id="scrum">
   <div class="card">
     <h2>What Scrum is (and isn't)</h2>
     <p><b>Scrum is a lightweight framework</b> that helps people, teams and organizations generate value
@@ -978,10 +1023,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
     <div class="cap">The full Scrum loop (2020 Scrum Guide / the Schukken poster): 3 artifacts in boxes, 5 events around them — every event a formal inspect-and-adapt point.</div>
     </div>
   </div>
-</section>
 
 <!-- ================= TEAM & EVENTS ================= -->
-<section class="tab" id="team">
   <div class="card">
     <h2>The Scrum Team — 3 accountabilities, 0 hierarchy</h2>
     <p>One <b>Product Owner</b>, one <b>Scrum Master</b>, and <b>Developers</b> — typically <b>10 or fewer</b>
@@ -1058,10 +1101,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
       <li><b>Refinement is an ongoing activity</b>, not an event — breaking down and further defining items (adding size, order, description).</li>
     </ul>
   </div>
-</section>
 
 <!-- ================= ARTIFACTS ================= -->
-<section class="tab" id="artifacts">
   <div class="card">
     <h2>3 artifacts + 3 commitments</h2>
     <p>Each artifact represents work or value and exists to <b>maximize transparency</b>. Each contains a
@@ -1108,10 +1149,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
     so the only one to actually memorize is <b>Increment → Definition of Done</b>.
     Altitude trick: <b>months → weeks → today</b>.</div>
   </div>
-</section>
 
 <!-- ================= SCALING ================= -->
-<section class="tab" id="scaling">
   <div class="card">
     <h2>Scrum in depth: multiple teams, one product</h2>
     <p>When products grow, you add <b>more Scrum Teams</b> — you do <b>not</b> grow one team beyond ~10.
@@ -1223,7 +1262,7 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
 </section>
 
 <!-- ================= ANTIPATTERNS ================= -->
-<section class="tab" id="antipatterns">
+<section class="tab" id="scrum-indepth">
   <div class="card">
     <h2>Scrum antipatterns — "Scrum in name only"</h2>
     <div class="callout"><b>📌 The lecture's definition (memorize this) <span class="vb">📜 verbatim</span></b>
@@ -1349,10 +1388,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
     Does someone outside the accountability make the call (manager assigns work, SM owns backlog, PO skips the
     team)? That's your answer.</div>
   </div>
-</section>
 
 <!-- ================= DEVOPS ================= -->
-<section class="tab" id="devops">
   <div class="card">
     <h2>DevOps — extending agility to operations</h2>
     <div class="callout"><b>📌 The lecture's definition (memorize this) <span class="vb">📜 verbatim</span></b>
@@ -1490,7 +1527,7 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
 </section>
 
 <!-- ================= TEAM DYNAMICS ================= -->
-<section class="tab" id="teamdyn">
+<section class="tab" id="team-dynamics">
   <div class="card">
     <h2>What is a team — and why dynamics matter (Lasse Lui Frandsen's lecture) <span class="vb">📜 definition verbatim</span></h2>
     <p><b>A (project) team:</b> a group of people that work together to achieve a <b>common goal</b> —
@@ -1623,7 +1660,7 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
 </section>
 
 <!-- ================= AI IN PM ================= -->
-<section class="tab" id="ai">
+<section class="tab" id="ai-pm">
   <div class="card">
     <h2>AI in Project Management (Lecture 7)</h2>
     <div class="callout"><b>📌 What is AI (PMI 2024, from the slides) <span class="vb">📜 verbatim</span></b>
@@ -2300,41 +2337,6 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <text class="map-sub" x="380" y="218" text-anchor="middle">+ limitation.</text>
       </svg>
       <div class="cap">Use this structure whenever an examiner asks a broad question: claim, concept, evidence, limitation.</div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= EXAM MODE ================= -->
-<section class="tab" id="exam">
-  <div class="card">
-    <h2>Exam Mode</h2>
-    <div class="callout exam"><b>Timed oral flow</b>
-    5 min report presentation → 5 min report questions → curriculum questions from Scrum, frameworks, team dynamics, AI and your report.</div>
-  </div>
-  <div class="card">
-    <div class="exam-shell">
-      <div class="exam-steps">
-        <div class="exam-step active" data-exam-step="0"><b>1. Report presentation</b><span>5:00</span></div>
-        <div class="exam-step" data-exam-step="1"><b>2. Report questions</b><span>5:00</span></div>
-        <div class="exam-step" data-exam-step="2"><b>3. Curriculum questions</b><span>10:00 drill</span></div>
-      </div>
-      <div class="exam-stage">
-        <div class="exam-meta">
-          <span id="exam-phase-label">Report presentation</span>
-          <span id="exam-counter">Phase 1 / 3</span>
-        </div>
-        <div class="exam-timer" id="exam-timer">05:00</div>
-        <div class="exam-prompt" id="exam-prompt"></div>
-        <div class="exam-answer hidden" id="exam-answer"></div>
-        <div class="exam-actions">
-          <button class="primary" id="exam-start" onclick="startExamTimer()">Start</button>
-          <button onclick="pauseExamTimer()">Pause</button>
-          <button onclick="resetExamPhase()">Reset phase</button>
-          <button id="exam-answer-toggle" onclick="toggleExamAnswer()">Show answer</button>
-          <button onclick="nextExamQuestion()">New question</button>
-          <button class="warn" onclick="nextExamPhase()">Next phase</button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
