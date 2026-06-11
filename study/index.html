@@ -123,7 +123,26 @@ a{color:var(--indigo);font-weight:600}
 .deck-stats{font-size:12.5px;color:var(--muted);font-weight:700;text-align:center}
 .quiz-controls{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
 .segmented{display:flex;gap:6px;flex-wrap:wrap}
+.exam-shell{display:grid;grid-template-columns:260px 1fr;gap:16px;align-items:start}
+.exam-steps{display:flex;flex-direction:column;gap:8px}
+.exam-step{border:1.5px solid var(--border);background:#fff;border-radius:12px;padding:11px 12px}
+.exam-step.active{border-color:var(--indigo);background:rgba(99,102,241,.07)}
+.exam-step.done{border-color:rgba(34,181,115,.55);background:rgba(34,181,115,.06)}
+.exam-step b{display:block;font-size:13px}
+.exam-step span{display:block;font-size:12px;color:var(--muted)}
+.exam-stage{border:1.5px solid var(--border);background:#fff;border-radius:14px;padding:18px}
+.exam-timer{font-size:58px;font-weight:800;letter-spacing:.02em;color:var(--indigo);line-height:1;text-align:center;margin:8px 0 12px}
+.exam-timer.low{color:var(--red)}
+.exam-prompt{font-size:18px;font-weight:800;line-height:1.35;margin:12px 0}
+.exam-answer{border-left:4px solid var(--amber);background:rgba(245,158,11,.08);border-radius:0 10px 10px 0;padding:12px 14px;margin:12px 0;font-size:14px;color:#3f4a63}
+.exam-answer.hidden{display:none}
+.exam-meta{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap;color:var(--muted);font-size:13px;font-weight:700}
+.exam-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.exam-actions button{border:1.5px solid var(--border);background:#fff;color:var(--ink);border-radius:10px;padding:8px 13px;font-size:13px;font-weight:800;cursor:pointer;font-family:Inter}
+.exam-actions button.primary{background:var(--grad);color:#fff;border-color:transparent;box-shadow:0 4px 14px rgba(99,102,241,.28)}
+.exam-actions button.warn{border-color:rgba(239,68,68,.45);color:var(--red)}
 @media(max-width:720px){.recall-grid{grid-template-columns:1fr}.map-card{padding:12px}.quiz-controls{align-items:flex-start}}
+@media(max-width:720px){.exam-shell{grid-template-columns:1fr}.exam-timer{font-size:46px}}
 </style>
 </head>
 <body>
@@ -133,6 +152,7 @@ a{color:var(--indigo);font-weight:600}
   <nav id="nav">
     <button data-tab="report" class="active">📑 Report ⭐</button>
     <button data-tab="defense">Defense</button>
+    <button data-tab="exam">Exam Mode</button>
     <button data-tab="basics">PM Basics</button>
     <button data-tab="lifecycle">Lifecycle & Tools</button>
     <button data-tab="frameworks">Frameworks</button>
@@ -2056,6 +2076,41 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
   </div>
 </section>
 
+<!-- ================= EXAM MODE ================= -->
+<section class="tab" id="exam">
+  <div class="card">
+    <h2>Exam Mode</h2>
+    <div class="callout exam"><b>Timed oral flow</b>
+    5 min report presentation → 5 min report questions → curriculum questions from Scrum, frameworks, team dynamics, AI and your report.</div>
+  </div>
+  <div class="card">
+    <div class="exam-shell">
+      <div class="exam-steps">
+        <div class="exam-step active" data-exam-step="0"><b>1. Report presentation</b><span>5:00</span></div>
+        <div class="exam-step" data-exam-step="1"><b>2. Report questions</b><span>5:00</span></div>
+        <div class="exam-step" data-exam-step="2"><b>3. Curriculum questions</b><span>10:00 drill</span></div>
+      </div>
+      <div class="exam-stage">
+        <div class="exam-meta">
+          <span id="exam-phase-label">Report presentation</span>
+          <span id="exam-counter">Phase 1 / 3</span>
+        </div>
+        <div class="exam-timer" id="exam-timer">05:00</div>
+        <div class="exam-prompt" id="exam-prompt"></div>
+        <div class="exam-answer hidden" id="exam-answer"></div>
+        <div class="exam-actions">
+          <button class="primary" id="exam-start" onclick="startExamTimer()">Start</button>
+          <button onclick="pauseExamTimer()">Pause</button>
+          <button onclick="resetExamPhase()">Reset phase</button>
+          <button id="exam-answer-toggle" onclick="toggleExamAnswer()">Show answer</button>
+          <button onclick="nextExamQuestion()">New question</button>
+          <button class="warn" onclick="nextExamPhase()">Next phase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FLASHCARDS ================= -->
 <section class="tab" id="flashcards">
   <div class="card" style="text-align:center">
@@ -2603,6 +2658,116 @@ function setQuizMode(mode,btn){
   if(btn) btn.classList.add("active");
   startQuiz();
 }
+
+/* ---------------- exam mode ---------------- */
+const EXAM_PHASES = [
+  {label:"Report presentation", seconds:300},
+  {label:"Report questions", seconds:300},
+  {label:"Curriculum questions", seconds:600}
+];
+const PRESENTATION_PROMPTS = [
+  {
+    q:"Deliver the 5-minute report opening.",
+    a:"Structure: title and research question → method and limitation → traditional roles → agile roles → AI effect → conclusion. Keep Chapter 6 visible: AI augments roles, but humans keep judgment, ethics and accountability."
+  },
+  {
+    q:"Explain Chapter 6 in one minute.",
+    a:"AI supports planning, scheduling, risk prediction, reporting, backlog work and Scrum facilitation. It changes the PM from information collector to decision facilitator. It does not remove accountability because AI outputs depend on data quality, assumptions and human ethical judgment."
+  },
+  {
+    q:"Close the report presentation strongly.",
+    a:"Traditional PM fits stable, fixed-scope contexts; agile fits uncertainty and changing needs. Modern organizations often combine both. AI improves information work in both approaches, but leadership, stakeholder management, trust and accountability remain human."
+  }
+];
+let examPhase = 0, examRemaining = EXAM_PHASES[0].seconds, examInterval = null, presentationIdx = 0;
+function formatExamTime(seconds){
+  const m = Math.floor(seconds/60).toString().padStart(2,"0");
+  const s = (seconds%60).toString().padStart(2,"0");
+  return `${m}:${s}`;
+}
+function stopExamTimer(){
+  if(examInterval) clearInterval(examInterval);
+  examInterval = null;
+  const start = document.getElementById("exam-start");
+  if(start) start.textContent = "Start";
+}
+function examPool(){
+  if(examPhase === 1) return QUESTIONS.filter(Q => (Q.t || "").includes("Report"));
+  if(examPhase === 2) {
+    return QUESTIONS.filter(Q => {
+      const t = Q.t || "";
+      return /Class quiz|Frameworks|Scrum|Foundations|Team|AI in PM|Antipatterns|Scaling|Report/.test(t);
+    });
+  }
+  return [];
+}
+function randomExamQuestion(){
+  if(examPhase === 0){
+    const item = PRESENTATION_PROMPTS[presentationIdx % PRESENTATION_PROMPTS.length];
+    presentationIdx++;
+    return item;
+  }
+  const pool = examPool();
+  const Q = pool[Math.floor(Math.random()*pool.length)];
+  if(!Q) return {q:"No questions available for this phase.", a:""};
+  const correct = Q.o && Number.isInteger(Q.a) ? `<b>Strong answer:</b> ${Q.o[Q.a]}<br><br>` : "";
+  return {q:Q.q, a:`${correct}${Q.e}`};
+}
+function setExamPrompt(item){
+  document.getElementById("exam-prompt").textContent = item.q;
+  const answer = document.getElementById("exam-answer");
+  answer.innerHTML = item.a;
+  answer.classList.add("hidden");
+  const toggle = document.getElementById("exam-answer-toggle");
+  if(toggle) toggle.textContent = "Show answer";
+}
+function renderExamMode(){
+  const phase = EXAM_PHASES[examPhase];
+  document.getElementById("exam-phase-label").textContent = phase.label;
+  document.getElementById("exam-counter").textContent = `Phase ${examPhase+1} / ${EXAM_PHASES.length}`;
+  const timer = document.getElementById("exam-timer");
+  timer.textContent = formatExamTime(examRemaining);
+  timer.classList.toggle("low", examRemaining <= 30);
+  document.querySelectorAll(".exam-step").forEach((step,i) => {
+    step.classList.toggle("active", i === examPhase);
+    step.classList.toggle("done", i < examPhase);
+  });
+}
+function startExamTimer(){
+  if(examInterval) return;
+  document.getElementById("exam-start").textContent = "Running";
+  examInterval = setInterval(() => {
+    examRemaining = Math.max(0, examRemaining-1);
+    renderExamMode();
+    if(examRemaining === 0){
+      stopExamTimer();
+      if(examPhase < EXAM_PHASES.length-1) nextExamPhase();
+    }
+  }, 1000);
+}
+function pauseExamTimer(){ stopExamTimer(); }
+function resetExamPhase(){
+  stopExamTimer();
+  examRemaining = EXAM_PHASES[examPhase].seconds;
+  renderExamMode();
+  setExamPrompt(randomExamQuestion());
+}
+function nextExamPhase(){
+  stopExamTimer();
+  examPhase = Math.min(EXAM_PHASES.length-1, examPhase+1);
+  examRemaining = EXAM_PHASES[examPhase].seconds;
+  renderExamMode();
+  setExamPrompt(randomExamQuestion());
+}
+function nextExamQuestion(){ setExamPrompt(randomExamQuestion()); }
+function toggleExamAnswer(){
+  const answer = document.getElementById("exam-answer");
+  const hidden = answer.classList.toggle("hidden");
+  document.getElementById("exam-answer-toggle").textContent = hidden ? "Show answer" : "Hide answer";
+}
+renderExamMode();
+setExamPrompt(randomExamQuestion());
+
 function startQuiz(){
   qOrder=activeQuestionIndexes().sort(()=>Math.random()-.5);
   qIdx=0; qScore=0;
