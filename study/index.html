@@ -167,7 +167,7 @@ a{color:var(--indigo);font-weight:600}
     <button data-tab="papers">Research Papers</button>
     <button data-tab="glossary">Glossary 🔤</button>
     <button data-tab="hooks">Hooks 🧠</button>
-    <button data-tab="maps">Maps</button>
+    <button data-tab="maps">Maps & Figures</button>
     <button data-tab="flashcards">Flashcards</button>
     <button data-tab="quiz">Quiz</button>
   </nav>
@@ -1984,7 +1984,7 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
 <!-- ================= CONCEPT MAPS ================= -->
 <section class="tab" id="maps">
   <div class="card">
-    <h2>Concept maps — explain the relationships</h2>
+    <h2>Concept maps & figures — explain the relationships</h2>
     <p class="muted">Use these to practice oral transitions. The exam is easier when you can connect concepts instead of listing definitions.</p>
   </div>
   <div class="map-grid">
@@ -2072,6 +2072,198 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <text class="map-sub" x="648" y="188" text-anchor="middle">Marnewick</text>
       </svg>
       <div class="cap">Oral bridge: every AI benefit needs a human-control clause: validate data, protect trust, and keep accountability with people.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Traditional vs Agile — the iron triangle flip</h3>
+      <svg class="map-svg" viewBox="0 0 760 300" role="img" aria-label="Traditional and agile iron triangle comparison">
+        <polygon points="180,42 62,220 298,220" fill="rgba(99,102,241,.07)" stroke="#6366f1" stroke-width="2.5"/>
+        <text class="map-text" x="180" y="24" text-anchor="middle">Traditional PM</text>
+        <text class="map-sub" x="180" y="65" text-anchor="middle">SCOPE fixed</text>
+        <text class="map-sub" x="58" y="244" text-anchor="middle">time flexes</text>
+        <text class="map-sub" x="302" y="244" text-anchor="middle">cost flexes</text>
+        <circle cx="180" cy="42" r="8" fill="#22b573"/><circle cx="62" cy="220" r="8" fill="#f59e0b"/><circle cx="298" cy="220" r="8" fill="#f59e0b"/>
+        <text class="map-sub" x="180" y="145" text-anchor="middle">plan-driven control</text>
+
+        <polygon points="580,42 462,220 698,220" fill="rgba(34,181,115,.07)" stroke="#22b573" stroke-width="2.5"/>
+        <text class="map-text" x="580" y="24" text-anchor="middle">Agile PM</text>
+        <text class="map-sub" x="580" y="65" text-anchor="middle">scope flexes</text>
+        <text class="map-sub" x="458" y="244" text-anchor="middle">TIME fixed</text>
+        <text class="map-sub" x="702" y="244" text-anchor="middle">COST fixed</text>
+        <circle cx="580" cy="42" r="8" fill="#f59e0b"/><circle cx="462" cy="220" r="8" fill="#22b573"/><circle cx="698" cy="220" r="8" fill="#22b573"/>
+        <text class="map-sub" x="580" y="145" text-anchor="middle">timeboxed learning</text>
+
+        <text class="map-text" x="380" y="118" text-anchor="middle">Exam line</text>
+        <text class="map-sub" x="380" y="138" text-anchor="middle">Traditional protects planned scope;</text>
+        <text class="map-sub" x="380" y="154" text-anchor="middle">Agile protects cadence and budget.</text>
+      </svg>
+      <div class="cap">Use this when asked why agile is more adaptive: it does not mean “no control”; it controls different variables.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Stage-Gate vs Agile-Stage-Gate hybrid flow</h3>
+      <svg class="map-svg" viewBox="0 0 760 320" role="img" aria-label="Stage-Gate and Agile-Stage-Gate hybrid flow comparison">
+        <defs><marker id="figArrowHybrid" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
+        <text class="map-text" x="82" y="40" text-anchor="middle">Classic Stage-Gate</text>
+        <text class="map-text" x="86" y="194" text-anchor="middle">Hybrid</text>
+        <g transform="translate(160 18)">
+          <rect class="node" x="0" y="0" width="88" height="50" rx="10"/><text class="map-sub" x="44" y="30" text-anchor="middle">Stage</text>
+          <path d="M90 25 H135" class="arrow" marker-end="url(#figArrowHybrid)"/>
+          <rect class="node amber" x="140" y="0" width="58" height="50" rx="10"/><text class="map-sub" x="169" y="30" text-anchor="middle">Gate</text>
+          <path d="M200 25 H245" class="arrow" marker-end="url(#figArrowHybrid)"/>
+          <rect class="node" x="250" y="0" width="88" height="50" rx="10"/><text class="map-sub" x="294" y="30" text-anchor="middle">Stage</text>
+          <path d="M340 25 H385" class="arrow" marker-end="url(#figArrowHybrid)"/>
+          <rect class="node amber" x="390" y="0" width="58" height="50" rx="10"/><text class="map-sub" x="419" y="30" text-anchor="middle">Gate</text>
+        </g>
+        <g transform="translate(160 170)">
+          <rect class="node green" x="0" y="0" width="150" height="82" rx="12"/>
+          <text class="map-sub" x="75" y="21" text-anchor="middle">Stage with sprints</text>
+          <rect x="18" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="33" y="51" text-anchor="middle">S1</text>
+          <rect x="60" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="75" y="51" text-anchor="middle">S2</text>
+          <rect x="102" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="117" y="51" text-anchor="middle">S3</text>
+          <path d="M152 41 H205" class="arrow" marker-end="url(#figArrowHybrid)"/>
+          <rect class="node amber" x="210" y="16" width="60" height="50" rx="10"/><text class="map-sub" x="240" y="46" text-anchor="middle">Gate</text>
+          <path d="M272 41 H325" class="arrow" marker-end="url(#figArrowHybrid)"/>
+          <rect class="node green" x="330" y="0" width="150" height="82" rx="12"/>
+          <text class="map-sub" x="405" y="21" text-anchor="middle">Stage with sprints</text>
+          <rect x="348" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="363" y="51" text-anchor="middle">S1</text>
+          <rect x="390" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="405" y="51" text-anchor="middle">S2</text>
+          <rect x="432" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="447" y="51" text-anchor="middle">S3</text>
+        </g>
+        <text class="map-sub" x="380" y="286" text-anchor="middle">Gates keep investment decisions; sprints reduce uncertainty before each decision.</text>
+      </svg>
+      <div class="cap">This is the “governance outside, agility inside” answer for Cooper and Agile-Stage-Gate.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Scrum 3-3-5 map</h3>
+      <svg class="map-svg" viewBox="0 0 760 310" role="img" aria-label="Scrum accountabilities, artifacts and events map">
+        <rect class="node violet" x="310" y="28" width="140" height="56" rx="14"/>
+        <text class="map-text" x="380" y="52" text-anchor="middle">Scrum</text>
+        <text class="map-sub" x="380" y="70" text-anchor="middle">3-3-5 structure</text>
+        <rect class="node" x="40" y="120" width="190" height="130" rx="14"/>
+        <text class="map-text" x="135" y="146" text-anchor="middle">3 accountabilities</text>
+        <text class="map-sub" x="135" y="171" text-anchor="middle">Product Owner</text>
+        <text class="map-sub" x="135" y="194" text-anchor="middle">Scrum Master</text>
+        <text class="map-sub" x="135" y="217" text-anchor="middle">Developers</text>
+        <rect class="node green" x="285" y="120" width="190" height="130" rx="14"/>
+        <text class="map-text" x="380" y="146" text-anchor="middle">3 artifacts</text>
+        <text class="map-sub" x="380" y="171" text-anchor="middle">Product Backlog → Product Goal</text>
+        <text class="map-sub" x="380" y="194" text-anchor="middle">Sprint Backlog → Sprint Goal</text>
+        <text class="map-sub" x="380" y="217" text-anchor="middle">Increment → Definition of Done</text>
+        <rect class="node amber" x="530" y="120" width="190" height="130" rx="14"/>
+        <text class="map-text" x="625" y="146" text-anchor="middle">5 events</text>
+        <text class="map-sub" x="625" y="171" text-anchor="middle">Sprint · Planning</text>
+        <text class="map-sub" x="625" y="194" text-anchor="middle">Daily Scrum · Review</text>
+        <text class="map-sub" x="625" y="217" text-anchor="middle">Retrospective</text>
+      </svg>
+      <div class="cap">If you freeze in the Scrum part of the exam, say “3 accountabilities, 3 artifacts, 5 events” and rebuild from there.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Definition of Done decision flow</h3>
+      <svg class="map-svg" viewBox="0 0 760 250" role="img" aria-label="Definition of Done decision flow">
+        <defs><marker id="figArrowDod" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
+        <rect class="node" x="40" y="94" width="145" height="60" rx="12"/><text class="map-text" x="112" y="120" text-anchor="middle">Work completed</text><text class="map-sub" x="112" y="138" text-anchor="middle">by Developers</text>
+        <path d="M187 124 H255" class="arrow" marker-end="url(#figArrowDod)"/>
+        <polygon points="330,66 410,124 330,182 250,124" fill="#fff" stroke="#f59e0b" stroke-width="2"/>
+        <text class="map-text" x="330" y="117" text-anchor="middle">Meets</text><text class="map-text" x="330" y="135" text-anchor="middle">DoD?</text>
+        <path d="M410 124 H500" class="arrow" marker-end="url(#figArrowDod)"/>
+        <rect class="node green" x="505" y="94" width="170" height="60" rx="12"/><text class="map-text" x="590" y="119" text-anchor="middle">Increment</text><text class="map-sub" x="590" y="138" text-anchor="middle">usable, verified</text>
+        <path d="M330 184 C330 220 112 220 112 158" class="arrow" marker-end="url(#figArrowDod)"/>
+        <text class="map-sub" x="430" y="111" text-anchor="middle">yes</text>
+        <text class="map-sub" x="232" y="218" text-anchor="middle">no → back to Product Backlog / future work</text>
+      </svg>
+      <div class="cap">Key exam sentence: work that does not meet the DoD is not an Increment.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Tuckman stages + Scrum Master support</h3>
+      <svg class="map-svg" viewBox="0 0 760 260" role="img" aria-label="Tuckman stages and Scrum Master support">
+        <defs><marker id="figArrowTuckman" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
+        <path d="M88 122 H666" class="arrow" marker-end="url(#figArrowTuckman)"/>
+        <g>
+          <rect class="node" x="34" y="72" width="118" height="96" rx="12"/><text class="map-text" x="93" y="101" text-anchor="middle">Forming</text><text class="map-sub" x="93" y="126" text-anchor="middle">set goals</text><text class="map-sub" x="93" y="143" text-anchor="middle">create safety</text>
+          <rect class="node red" x="184" y="72" width="118" height="96" rx="12"/><text class="map-text" x="243" y="101" text-anchor="middle">Storming</text><text class="map-sub" x="243" y="126" text-anchor="middle">resolve conflict</text><text class="map-sub" x="243" y="143" text-anchor="middle">build trust</text>
+          <rect class="node amber" x="334" y="72" width="118" height="96" rx="12"/><text class="map-text" x="393" y="101" text-anchor="middle">Norming</text><text class="map-sub" x="393" y="126" text-anchor="middle">support norms</text><text class="map-sub" x="393" y="143" text-anchor="middle">reinforce roles</text>
+          <rect class="node green" x="484" y="72" width="118" height="96" rx="12"/><text class="map-text" x="543" y="101" text-anchor="middle">Performing</text><text class="map-sub" x="543" y="126" text-anchor="middle">step back</text><text class="map-sub" x="543" y="143" text-anchor="middle">remove barriers</text>
+          <rect class="node violet" x="634" y="72" width="98" height="96" rx="12"/><text class="map-text" x="683" y="101" text-anchor="middle">Adjourn</text><text class="map-sub" x="683" y="126" text-anchor="middle">close</text><text class="map-sub" x="683" y="143" text-anchor="middle">learn</text>
+        </g>
+        <text class="map-sub" x="380" y="216" text-anchor="middle">SM style changes with maturity: more structure early, more autonomy later.</text>
+      </svg>
+      <div class="cap">Use this to connect Tuckman, Scrum Master behavior, and Spiegler’s leadership transfer.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>AI impact on PM roles</h3>
+      <table>
+        <tr><th>AI task</th><th>Traditional role impact</th><th>Agile role impact</th><th>Human responsibility left</th></tr>
+        <tr><td>Planning and estimating</td><td>PM gets data-driven schedule/resource options</td><td>PO and Developers get forecasting support</td><td>Validate assumptions and explain trade-offs</td></tr>
+        <tr><td>Risk prediction</td><td>PM and sponsor see earlier warnings</td><td>Team sees flow/impediment patterns</td><td>Choose response and remain accountable</td></tr>
+        <tr><td>Reporting and summaries</td><td>Status reporting becomes less manual</td><td>SM gets meeting/retro summaries</td><td>Protect trust; avoid surveillance culture</td></tr>
+        <tr><td>Backlog suggestions</td><td>Less central in traditional PM</td><td>PO gets story/prioritization support</td><td>Own value, stakeholder alignment and ordering</td></tr>
+      </table>
+      <div class="cap">This is the Chapter 6 answer pattern: AI task → role supported → human judgment that remains.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>AI risk triangle</h3>
+      <svg class="map-svg" viewBox="0 0 760 280" role="img" aria-label="AI risk triangle in project management">
+        <polygon points="380,34 130,226 630,226" fill="rgba(239,68,68,.05)" stroke="#ef4444" stroke-width="2.5"/>
+        <circle cx="380" cy="34" r="10" fill="#ef4444"/><circle cx="130" cy="226" r="10" fill="#f59e0b"/><circle cx="630" cy="226" r="10" fill="#8b5cf6"/>
+        <text class="map-text" x="380" y="20" text-anchor="middle">Ethics & accountability</text>
+        <text class="map-sub" x="380" y="64" text-anchor="middle">who is responsible?</text>
+        <text class="map-text" x="130" y="252" text-anchor="middle">Data dependency</text>
+        <text class="map-sub" x="130" y="268" text-anchor="middle">bad data → bad advice</text>
+        <text class="map-text" x="630" y="252" text-anchor="middle">Trust & adoption</text>
+        <text class="map-sub" x="630" y="268" text-anchor="middle">fear or blind trust</text>
+        <text class="map-text" x="380" y="142" text-anchor="middle">Defense answer</text>
+        <text class="map-sub" x="380" y="162" text-anchor="middle">AI outputs are recommendations, not accountability transfers.</text>
+      </svg>
+      <div class="cap">This is the shortest strong answer to “what are the risks of AI in PM?”</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Research paper evidence map</h3>
+      <svg class="map-svg" viewBox="0 0 760 320" role="img" aria-label="Research paper evidence map grouped by theme">
+        <rect class="node" x="36" y="42" width="205" height="94" rx="14"/>
+        <text class="map-text" x="138" y="70" text-anchor="middle">Traditional / risk</text>
+        <text class="map-sub" x="138" y="94" text-anchor="middle">Bannerman · Marcelino-Sadaba</text>
+        <text class="map-sub" x="138" y="112" text-anchor="middle">Vrhovec · Havermans</text>
+        <rect class="node green" x="278" y="42" width="205" height="94" rx="14"/>
+        <text class="map-text" x="380" y="70" text-anchor="middle">Scrum / teamwork</text>
+        <text class="map-sub" x="380" y="94" text-anchor="middle">Moe · McHugh · Azanha</text>
+        <text class="map-sub" x="380" y="112" text-anchor="middle">Kristensen · Spiegler</text>
+        <rect class="node amber" x="520" y="42" width="205" height="94" rx="14"/>
+        <text class="map-text" x="622" y="70" text-anchor="middle">Scaling / org agility</text>
+        <text class="map-sub" x="622" y="94" text-anchor="middle">Shrivastava · Bremer</text>
+        <text class="map-sub" x="622" y="112" text-anchor="middle">Kadenic</text>
+        <rect class="node red" x="178" y="190" width="205" height="94" rx="14"/>
+        <text class="map-text" x="280" y="218" text-anchor="middle">AI in PM</text>
+        <text class="map-sub" x="280" y="242" text-anchor="middle">Niederman · Dam</text>
+        <text class="map-sub" x="280" y="260" text-anchor="middle">Barcaui · Marnewick</text>
+        <rect class="node violet" x="420" y="190" width="205" height="94" rx="14"/>
+        <text class="map-text" x="522" y="218" text-anchor="middle">Team autonomy</text>
+        <text class="map-sub" x="522" y="242" text-anchor="middle">Langfred · Tuckman</text>
+        <text class="map-sub" x="522" y="260" text-anchor="middle">Bonebright</text>
+      </svg>
+      <div class="cap">Use this when asked “which source supports that claim?” Pick the theme first, then name the paper.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Exam answer bridge map</h3>
+      <svg class="map-svg" viewBox="0 0 760 250" role="img" aria-label="Exam answer bridge from report to curriculum">
+        <defs><marker id="figArrowBridge" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
+        <rect class="node" x="22" y="88" width="110" height="58" rx="12"/><text class="map-text" x="77" y="113" text-anchor="middle">Roles</text><text class="map-sub" x="77" y="131" text-anchor="middle">report core</text>
+        <path d="M134 117 H190" class="arrow" marker-end="url(#figArrowBridge)"/>
+        <rect class="node green" x="194" y="88" width="120" height="58" rx="12"/><text class="map-text" x="254" y="113" text-anchor="middle">Leadership</text><text class="map-sub" x="254" y="131" text-anchor="middle">PM vs SM</text>
+        <path d="M316 117 H372" class="arrow" marker-end="url(#figArrowBridge)"/>
+        <rect class="node amber" x="376" y="88" width="130" height="58" rx="12"/><text class="map-text" x="441" y="113" text-anchor="middle">Communication</text><text class="map-sub" x="441" y="131" text-anchor="middle">formal vs frequent</text>
+        <path d="M508 117 H564" class="arrow" marker-end="url(#figArrowBridge)"/>
+        <rect class="node violet" x="568" y="88" width="160" height="58" rx="12"/><text class="map-text" x="648" y="113" text-anchor="middle">AI augmentation</text><text class="map-sub" x="648" y="131" text-anchor="middle">support, not replace</text>
+        <text class="map-sub" x="380" y="194" text-anchor="middle">Strong oral answer = report claim + lecture concept + source evidence + limitation.</text>
+      </svg>
+      <div class="cap">Use this structure whenever an examiner asks a broad question: claim, concept, evidence, limitation.</div>
     </div>
   </div>
 </section>
