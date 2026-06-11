@@ -63,6 +63,8 @@ kbd{background:#f1f4fd;border:1px solid var(--border);border-radius:6px;padding:
   box-shadow:0 10px 30px rgba(49,46,129,.15)}
 .face.front{background:var(--grad);color:#fff}
 .face.back{background:#fff;transform:rotateY(180deg);font-weight:500;font-size:15.5px}
+.flash.known .face.front{background:linear-gradient(135deg,#22b573,#16a34a)}
+.flash.weak .face.front{background:linear-gradient(135deg,#f59e0b,#ef4444)}
 .deck-controls{display:flex;gap:10px;align-items:center}
 .deck-controls button,#quiz button.nav-btn{border:none;background:var(--grad);color:#fff;border-radius:12px;
   padding:9px 18px;font-weight:700;cursor:pointer;font-family:Inter;font-size:14px;
@@ -94,6 +96,34 @@ a{color:var(--indigo);font-weight:600}
   text-align:center;overflow-x:auto}
 .diagram svg{max-width:100%;height:auto}
 .diagram .cap{font-size:12.5px;color:var(--muted);margin-top:8px}
+.toolbar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0}
+.toolbar button,.recall-actions button,.segmented button{border:1.5px solid var(--border);background:#fff;color:var(--ink);
+  border-radius:10px;padding:7px 12px;font-size:13px;font-weight:700;cursor:pointer;font-family:Inter}
+.toolbar button:hover,.recall-actions button:hover,.segmented button:hover{border-color:var(--indigo);color:var(--indigo)}
+.toolbar button.primary,.recall-actions button.primary,.segmented button.active{background:var(--grad);color:#fff;border-color:transparent;
+  box-shadow:0 4px 14px rgba(99,102,241,.28)}
+.recall-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.recall-card{border:1.5px solid var(--border);border-radius:12px;padding:14px 16px;background:#fff;margin-bottom:12px}
+.recall-card.known{border-color:rgba(34,181,115,.55);background:rgba(34,181,115,.05)}
+.recall-card.weak{border-color:rgba(245,158,11,.65);background:rgba(245,158,11,.06)}
+.recall-card .prompt{font-weight:800;color:var(--ink);margin-bottom:8px}
+.recall-card .answer{font-size:13.8px;color:#3f4a63;margin-top:8px}
+.recall-card .answer.hidden{display:none}
+.recall-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
+.recall-status{display:inline-block;margin-left:6px;color:var(--muted);font-size:12px;font-weight:700}
+.map-grid{display:grid;grid-template-columns:1fr;gap:16px}
+.map-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;overflow-x:auto}
+.map-card h3{margin-top:0}
+.map-svg{min-width:660px;width:100%;height:auto}
+.node{fill:#fff;stroke:#6366f1;stroke-width:2}
+.node.green{stroke:#22b573}.node.amber{stroke:#f59e0b}.node.red{stroke:#ef4444}.node.violet{stroke:#8b5cf6}
+.arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
+.map-text{font-size:12px;font-weight:800;fill:#1c2336}
+.map-sub{font-size:10.5px;fill:#64748b}
+.deck-stats{font-size:12.5px;color:var(--muted);font-weight:700;text-align:center}
+.quiz-controls{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+.segmented{display:flex;gap:6px;flex-wrap:wrap}
+@media(max-width:720px){.recall-grid{grid-template-columns:1fr}.map-card{padding:12px}.quiz-controls{align-items:flex-start}}
 </style>
 </head>
 <body>
@@ -102,6 +132,7 @@ a{color:var(--indigo);font-weight:600}
   <h1>📚 <span>EPM Exam Prep</span></h1>
   <nav id="nav">
     <button data-tab="report" class="active">📑 Report ⭐</button>
+    <button data-tab="defense">Defense</button>
     <button data-tab="basics">PM Basics</button>
     <button data-tab="lifecycle">Lifecycle & Tools</button>
     <button data-tab="frameworks">Frameworks</button>
@@ -116,6 +147,7 @@ a{color:var(--indigo);font-weight:600}
     <button data-tab="papers">Research Papers</button>
     <button data-tab="glossary">Glossary 🔤</button>
     <button data-tab="hooks">Hooks 🧠</button>
+    <button data-tab="maps">Maps</button>
     <button data-tab="flashcards">Flashcards</button>
     <button data-tab="quiz">Quiz</button>
   </nav>
@@ -219,6 +251,126 @@ a{color:var(--indigo);font-weight:600}
       <tr><td><b>⭐ Barcaui &amp; Monat 2023</b></td><td>"Who is better in project planning — GenAI or project managers?": GenAI produces useful plans, but human PMs are still required → augmentation thesis.</td></tr>
       <tr><td><b>⭐ Marnewick 2021</b></td><td>"Digital intelligence: a must-have for project managers" — the future-skills answer for trust &amp; adoption.</td></tr>
       <tr><td><b>⭐ Kerzner 2025 · Beck 2001</b></td><td>Kerzner: PM history (industrial revolution, Taylor, Gantt). Beck: the Agile Manifesto itself.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= REPORT DEFENSE ================= -->
+<section class="tab" id="defense">
+  <div class="card">
+    <h2>Report Defense — oral answers under pressure</h2>
+    <p>This page is for the first 10 minutes of the exam: your 5-minute report presentation and the report questions that follow. Say the answer out loud first, then reveal it.</p>
+    <div class="callout exam"><b>Defense thesis in one sentence</b>
+    Traditional PM concentrates authority in formal roles and upfront control; agile distributes responsibility through PO, Scrum Master and Developers; AI does not remove these roles, but shifts them toward decision facilitation, judgment and ethical accountability.</div>
+    <div class="toolbar">
+      <button class="primary" onclick="hideAllRecall()">Hide all answers</button>
+      <button onclick="showWeakRecall()">Show weak only</button>
+      <button onclick="showAllRecall()">Show all</button>
+      <span class="muted" id="recall-summary"></span>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Core defense questions</h2>
+    <div class="recall-grid">
+      <div class="recall-card" data-recall="rq">
+        <div class="prompt">Research question: what exactly did the report investigate?</div>
+        <div class="answer hidden">It investigated how roles and responsibilities differ between traditional and agile project management, and how AI can influence those roles in modern organizations. The answer is comparative: traditional roles emphasize planning, hierarchy and control; agile roles emphasize collaboration, self-management and adaptation; AI augments both by automating information work while humans keep accountability.</div>
+        <div class="recall-actions">
+          <button onclick="toggleRecall(this)">Show answer</button>
+          <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+          <button onclick="markRecall(this,'weak')">Ask me again later</button>
+          <span class="recall-status"></span>
+        </div>
+      </div>
+      <div class="recall-card" data-recall="method">
+        <div class="prompt">Method and limitations: how do you defend a literature-based report?</div>
+        <div class="answer hidden">The method is a literature-based comparative analysis using course material and 17 academic sources. Its strength is synthesis across traditional PM, agile PM and AI. Its limits are clear: no original empirical data, several claims rely on single case studies, and the AI chapter uses conceptual/future-facing literature, especially Niederman. Say this first: it shows control of your own method.</div>
+        <div class="recall-actions">
+          <button onclick="toggleRecall(this)">Show answer</button>
+          <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+          <button onclick="markRecall(this,'weak')">Ask me again later</button>
+          <span class="recall-status"></span>
+        </div>
+      </div>
+      <div class="recall-card" data-recall="ownership">
+        <div class="prompt">Chapter ownership: which parts should you own most strongly?</div>
+        <div class="answer hidden">Own Chapter 6 most deeply: AI in project management. Also be ready for Chapter 5 because it connects traditional and agile roles. You can say: my strongest responsibility is explaining how AI changes project roles without replacing human accountability, especially in planning, risk analysis, Scrum support, backlog work and ethical decision-making.</div>
+        <div class="recall-actions">
+          <button onclick="toggleRecall(this)">Show answer</button>
+          <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+          <button onclick="markRecall(this,'weak')">Ask me again later</button>
+          <span class="recall-status"></span>
+        </div>
+      </div>
+      <div class="recall-card" data-recall="conclusion">
+        <div class="prompt">Conclusion: what is the practical takeaway?</div>
+        <div class="answer hidden">Context decides. Stable, fixed-scope projects benefit from traditional structure and governance. Uncertain, changing projects benefit from agile adaptation and team autonomy. AI supports both by improving planning, reporting, risk insight and backlog work, but leadership, ethics, stakeholder management and final accountability remain human responsibilities.</div>
+        <div class="recall-actions">
+          <button onclick="toggleRecall(this)">Show answer</button>
+          <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+          <button onclick="markRecall(this,'weak')">Ask me again later</button>
+          <span class="recall-status"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Likely examiner attacks — strong answers</h2>
+    <div class="recall-card" data-recall="attack-ai-replace">
+      <div class="prompt">Attack: “If AI can plan, report and monitor, why do we still need project managers?”</div>
+      <div class="answer hidden">Because planning output is not the same as project responsibility. AI can process data and suggest plans, but PMs judge assumptions, negotiate with stakeholders, handle conflict, make ethical trade-offs and remain accountable when outcomes affect people and organizations. This is exactly the augmentation argument: Barcaui &amp; Monat show GenAI can help planning, while Niederman stresses that PMs must critique AI outputs before acting.</div>
+      <div class="recall-actions">
+        <button onclick="toggleRecall(this)">Show answer</button>
+        <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+        <button onclick="markRecall(this,'weak')">Ask me again later</button>
+        <span class="recall-status"></span>
+      </div>
+    </div>
+    <div class="recall-card" data-recall="attack-sm">
+      <div class="prompt">Attack: “Will AI replace the Scrum Master?”</div>
+      <div class="answer hidden">AI can replace the secretary part of the role: summaries, meeting notes, recurring-impediment detection and backlog hygiene. It does not replace the change-leadership part: coaching, trust-building, conflict handling, shielding the team and helping the organization improve. Link Dam to Kristensen &amp; Paasivaara: automation supports Scrum, but the invisible human work of the Scrum Master still matters.</div>
+      <div class="recall-actions">
+        <button onclick="toggleRecall(this)">Show answer</button>
+        <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+        <button onclick="markRecall(this,'weak')">Ask me again later</button>
+        <span class="recall-status"></span>
+      </div>
+    </div>
+    <div class="recall-card" data-recall="attack-agile-monitoring">
+      <div class="prompt">Attack: “Is AI performance monitoring useful in agile teams?”</div>
+      <div class="answer hidden">It is risky. Agile depends on trust, openness and self-management. AI used to monitor individuals can turn the Scrum Master or management into controllers and damage the team environment. The better use is team-level learning: recurring impediments, flow problems, backlog refinement support and retrospective patterns.</div>
+      <div class="recall-actions">
+        <button onclick="toggleRecall(this)">Show answer</button>
+        <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+        <button onclick="markRecall(this,'weak')">Ask me again later</button>
+        <span class="recall-status"></span>
+      </div>
+    </div>
+    <div class="recall-card" data-recall="attack-hybrid">
+      <div class="prompt">Attack: “Your report treats traditional and agile as opposites. Isn’t that too simple?”</div>
+      <div class="answer hidden">Yes, if presented as a strict either/or. The report’s better answer is contextual and hybrid: traditional PM gives governance, sponsor control and predictable gates; agile gives learning cycles, customer feedback and adaptability. Agile-Stage-Gate is the bridge: governance outside, sprints inside. That is why the conclusion says they are complements in modern organizations.</div>
+      <div class="recall-actions">
+        <button onclick="toggleRecall(this)">Show answer</button>
+        <button class="primary" onclick="markRecall(this,'known')">I know this</button>
+        <button onclick="markRecall(this,'weak')">Ask me again later</button>
+        <span class="recall-status"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Chapter 6 AI defense script</h2>
+    <div class="callout hook"><b>Three-part answer pattern</b>
+    1. Name the AI function. 2. Name the role it supports. 3. Name the human responsibility that remains.</div>
+    <table>
+      <tr><th>AI use</th><th>Role supported</th><th>Human responsibility that remains</th></tr>
+      <tr><td>Scheduling, estimates, resource allocation</td><td>Traditional PM</td><td>Validate assumptions, negotiate constraints, explain trade-offs</td></tr>
+      <tr><td>Risk prediction and alerts</td><td>PM, sponsor, stakeholders</td><td>Decide response, own accountability, handle ethics and bias</td></tr>
+      <tr><td>User-story and backlog suggestions</td><td>Product Owner</td><td>Own value, stakeholder alignment and final ordering</td></tr>
+      <tr><td>Summaries, impediment patterns, retro insights</td><td>Scrum Master</td><td>Coach the team, protect trust, avoid surveillance</td></tr>
+      <tr><td>Historical velocity and sprint forecasting</td><td>Developers and PO</td><td>Keep estimates transparent; avoid turning metrics into individual KPIs</td></tr>
     </table>
   </div>
 </section>
@@ -1809,6 +1961,101 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
   </div>
 </section>
 
+<!-- ================= CONCEPT MAPS ================= -->
+<section class="tab" id="maps">
+  <div class="card">
+    <h2>Concept maps — explain the relationships</h2>
+    <p class="muted">Use these to practice oral transitions. The exam is easier when you can connect concepts instead of listing definitions.</p>
+  </div>
+  <div class="map-grid">
+    <div class="map-card">
+      <h3>Traditional PM → Stage-Gate → Agile-Stage-Gate</h3>
+      <svg class="map-svg" viewBox="0 0 760 260" role="img" aria-label="Concept map connecting traditional project management, Stage-Gate and Agile-Stage-Gate">
+        <defs><marker id="mapArrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
+        <path d="M170 70 C225 70 245 70 300 70" class="arrow" marker-end="url(#mapArrow1)"/>
+        <path d="M460 70 C515 70 535 70 590 70" class="arrow" marker-end="url(#mapArrow1)"/>
+        <path d="M380 115 C380 150 380 165 380 198" class="arrow" marker-end="url(#mapArrow1)"/>
+        <rect class="node" x="30" y="32" width="145" height="76" rx="12"/>
+        <text class="map-text" x="102" y="62" text-anchor="middle">Traditional PM</text>
+        <text class="map-sub" x="102" y="82" text-anchor="middle">upfront plan</text>
+        <text class="map-sub" x="102" y="96" text-anchor="middle">scope control</text>
+        <rect class="node amber" x="305" y="32" width="155" height="76" rx="12"/>
+        <text class="map-text" x="382" y="62" text-anchor="middle">Stage-Gate</text>
+        <text class="map-sub" x="382" y="82" text-anchor="middle">stages add work</text>
+        <text class="map-sub" x="382" y="96" text-anchor="middle">gates decide</text>
+        <rect class="node green" x="590" y="32" width="145" height="76" rx="12"/>
+        <text class="map-text" x="662" y="62" text-anchor="middle">Hybrid</text>
+        <text class="map-sub" x="662" y="82" text-anchor="middle">governance outside</text>
+        <text class="map-sub" x="662" y="96" text-anchor="middle">sprints inside</text>
+        <rect class="node violet" x="240" y="184" width="280" height="56" rx="12"/>
+        <text class="map-text" x="380" y="208" text-anchor="middle">Exam answer</text>
+        <text class="map-sub" x="380" y="226" text-anchor="middle">traditional and agile are complements when uncertainty meets investment control</text>
+      </svg>
+      <div class="cap">Oral bridge: Stage-Gate preserves sponsor/governance decisions; agile adds learning cycles inside stages.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>Scrum roles → self-management → team dynamics</h3>
+      <svg class="map-svg" viewBox="0 0 760 300" role="img" aria-label="Concept map connecting Scrum roles, self-management and team dynamics">
+        <defs><marker id="mapArrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
+        <path d="M172 82 C225 82 245 82 300 82" class="arrow" marker-end="url(#mapArrow2)"/>
+        <path d="M460 82 C515 82 535 82 588 82" class="arrow" marker-end="url(#mapArrow2)"/>
+        <path d="M380 120 C380 155 380 172 380 204" class="arrow" marker-end="url(#mapArrow2)"/>
+        <path d="M300 232 C230 232 210 220 164 190" class="arrow" marker-end="url(#mapArrow2)"/>
+        <path d="M460 232 C530 232 550 220 596 190" class="arrow" marker-end="url(#mapArrow2)"/>
+        <rect class="node" x="26" y="42" width="150" height="82" rx="12"/>
+        <text class="map-text" x="101" y="72" text-anchor="middle">Scrum roles</text>
+        <text class="map-sub" x="101" y="92" text-anchor="middle">PO value</text>
+        <text class="map-sub" x="101" y="106" text-anchor="middle">SM effectiveness</text>
+        <rect class="node green" x="300" y="42" width="160" height="82" rx="12"/>
+        <text class="map-text" x="380" y="72" text-anchor="middle">Self-management</text>
+        <text class="map-sub" x="380" y="92" text-anchor="middle">developers pull work</text>
+        <text class="map-sub" x="380" y="106" text-anchor="middle">team decides how</text>
+        <rect class="node violet" x="588" y="42" width="146" height="82" rx="12"/>
+        <text class="map-text" x="661" y="72" text-anchor="middle">Team dynamics</text>
+        <text class="map-sub" x="661" y="92" text-anchor="middle">trust, cohesion</text>
+        <text class="map-sub" x="661" y="106" text-anchor="middle">shared mental models</text>
+        <rect class="node amber" x="250" y="200" width="260" height="64" rx="12"/>
+        <text class="map-text" x="380" y="224" text-anchor="middle">Risk if missing</text>
+        <text class="map-sub" x="380" y="244" text-anchor="middle">hijacking, reporting dailies, PO absence, weak communication</text>
+        <text class="map-sub" x="118" y="188" text-anchor="middle">Moe case</text>
+        <text class="map-sub" x="642" y="188" text-anchor="middle">Tuckman + Spiegler</text>
+      </svg>
+      <div class="cap">Oral bridge: Scrum roles are not hierarchy; they create the conditions for self-management, which depends on team maturity and trust.</div>
+    </div>
+
+    <div class="map-card">
+      <h3>AI → role transformation → trust/accountability</h3>
+      <svg class="map-svg" viewBox="0 0 760 300" role="img" aria-label="Concept map connecting AI, role transformation, trust and accountability">
+        <defs><marker id="mapArrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
+        <path d="M172 82 C225 82 245 82 300 82" class="arrow" marker-end="url(#mapArrow3)"/>
+        <path d="M460 82 C515 82 535 82 588 82" class="arrow" marker-end="url(#mapArrow3)"/>
+        <path d="M380 124 C380 160 380 176 380 208" class="arrow" marker-end="url(#mapArrow3)"/>
+        <path d="M250 236 C180 236 155 220 108 184" class="arrow" marker-end="url(#mapArrow3)"/>
+        <path d="M510 236 C580 236 605 220 652 184" class="arrow" marker-end="url(#mapArrow3)"/>
+        <rect class="node" x="26" y="42" width="150" height="82" rx="12"/>
+        <text class="map-text" x="101" y="72" text-anchor="middle">AI functions</text>
+        <text class="map-sub" x="101" y="92" text-anchor="middle">planning, risk</text>
+        <text class="map-sub" x="101" y="106" text-anchor="middle">reports, backlog</text>
+        <rect class="node green" x="300" y="42" width="160" height="82" rx="12"/>
+        <text class="map-text" x="380" y="72" text-anchor="middle">Role shift</text>
+        <text class="map-sub" x="380" y="92" text-anchor="middle">manager becomes</text>
+        <text class="map-sub" x="380" y="106" text-anchor="middle">decision facilitator</text>
+        <rect class="node red" x="588" y="42" width="146" height="82" rx="12"/>
+        <text class="map-text" x="661" y="72" text-anchor="middle">Risks</text>
+        <text class="map-sub" x="661" y="92" text-anchor="middle">bias, surveillance</text>
+        <text class="map-sub" x="661" y="106" text-anchor="middle">blind trust</text>
+        <rect class="node violet" x="250" y="204" width="260" height="64" rx="12"/>
+        <text class="map-text" x="380" y="228" text-anchor="middle">Defense line</text>
+        <text class="map-sub" x="380" y="248" text-anchor="middle">AI augments roles; humans keep judgment, ethics and accountability</text>
+        <text class="map-sub" x="110" y="188" text-anchor="middle">Niederman</text>
+        <text class="map-sub" x="648" y="188" text-anchor="middle">Marnewick</text>
+      </svg>
+      <div class="cap">Oral bridge: every AI benefit needs a human-control clause: validate data, protect trust, and keep accountability with people.</div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= FLASHCARDS ================= -->
 <section class="tab" id="flashcards">
   <div class="card" style="text-align:center">
@@ -1826,8 +2073,12 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
       <button class="ghost" onclick="prevCard()">← Prev</button>
       <span id="deck-count"></span>
       <button onclick="nextCard()">Next →</button>
+      <button class="ghost" onclick="hideCardAnswer()">Hide answer</button>
       <button class="ghost" onclick="shuffleDeck()">🔀 Shuffle</button>
+      <button class="primary" onclick="markCard('known')">I know this</button>
+      <button class="ghost" onclick="markCard('weak')">Ask me again later</button>
     </div>
+    <div class="deck-stats" id="deck-stats"></div>
   </div>
 </section>
 
@@ -1835,6 +2086,16 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
 <section class="tab" id="quiz">
   <div class="card">
     <h2>Exam quiz <span class="muted" id="q-meta"></span></h2>
+    <div class="quiz-controls">
+      <div class="segmented" id="quiz-mode">
+        <button class="active" data-mode="all" onclick="setQuizMode('all',this)">Mixed</button>
+        <button data-mode="basic" onclick="setQuizMode('basic',this)">Basic definitions</button>
+        <button data-mode="lecture" onclick="setQuizMode('lecture',this)">Lecture detail</button>
+        <button data-mode="research" onclick="setQuizMode('research',this)">Research evidence</button>
+        <button data-mode="examiner" onclick="setQuizMode('examiner',this)">Examiner critique</button>
+      </div>
+      <button class="nav-btn" onclick="startQuiz()">Restart set</button>
+    </div>
     <div id="q-progress"><div id="q-bar"></div></div>
     <div id="q-body">
       <div class="q-topic" id="q-topic"></div>
@@ -1868,6 +2129,64 @@ document.querySelectorAll("#nav button").forEach(btn => {
     window.scrollTo({top:0});
   });
 });
+
+/* ---------------- active recall ---------------- */
+const RECALL_KEY = "epmRecallState";
+function recallState(){
+  try { return JSON.parse(localStorage.getItem(RECALL_KEY) || "{}"); }
+  catch { return {}; }
+}
+function saveRecallState(state){ localStorage.setItem(RECALL_KEY, JSON.stringify(state)); }
+function recallCardFromButton(btn){ return btn.closest(".recall-card"); }
+function toggleRecall(btn){
+  const card = recallCardFromButton(btn);
+  const answer = card.querySelector(".answer");
+  const hidden = answer.classList.toggle("hidden");
+  btn.textContent = hidden ? "Show answer" : "Hide answer";
+}
+function markRecall(btn,status){
+  const card = recallCardFromButton(btn);
+  const id = card.dataset.recall;
+  const state = recallState();
+  state[id] = status;
+  saveRecallState(state);
+  applyRecallState();
+}
+function applyRecallState(){
+  const state = recallState();
+  let known = 0, weak = 0, total = 0;
+  document.querySelectorAll(".recall-card").forEach(card => {
+    total++;
+    const status = state[card.dataset.recall];
+    card.classList.toggle("known", status === "known");
+    card.classList.toggle("weak", status === "weak");
+    if(status === "known") known++;
+    if(status === "weak") weak++;
+    const label = card.querySelector(".recall-status");
+    if(label) label.textContent = status === "known" ? "Known" : status === "weak" ? "Review again" : "";
+  });
+  const summary = document.getElementById("recall-summary");
+  if(summary) summary.textContent = `${known}/${total} known · ${weak} weak`;
+}
+function hideAllRecall(){
+  document.querySelectorAll(".recall-card").forEach(card => {
+    const answer = card.querySelector(".answer");
+    const button = card.querySelector(".recall-actions button");
+    if(answer) answer.classList.add("hidden");
+    if(button) button.textContent = "Show answer";
+    card.style.display = "";
+  });
+}
+function showWeakRecall(){
+  const state = recallState();
+  document.querySelectorAll(".recall-card").forEach(card => {
+    card.style.display = state[card.dataset.recall] === "weak" ? "" : "none";
+  });
+}
+function showAllRecall(){
+  document.querySelectorAll(".recall-card").forEach(card => { card.style.display = ""; });
+}
+applyRecallState();
 
 /* ---------------- flashcards ---------------- */
 const CARDS = [
@@ -1967,18 +2286,45 @@ const CARDS = [
   ["Shrivastava & Rathod (2015): distributed agile risks?", "45 risk factors in 5 core categories (lifecycle, project management, group awareness, external stakeholder collaboration, technology setup), mapped to Leavitt's model of organizational change — from 13 interviews + 28 project documents."],
 ];
 let deck = [...CARDS], cardIdx = 0;
+const CARD_STATE_KEY = "epmFlashcardState";
+function cardState(){
+  try { return JSON.parse(localStorage.getItem(CARD_STATE_KEY) || "{}"); }
+  catch { return {}; }
+}
+function saveCardState(state){ localStorage.setItem(CARD_STATE_KEY, JSON.stringify(state)); }
+function cardId(card){ return card[0]; }
+function updateDeckStats(){
+  const state = cardState();
+  const known = CARDS.filter(card => state[cardId(card)] === "known").length;
+  const weak = CARDS.filter(card => state[cardId(card)] === "weak").length;
+  const stats = document.getElementById("deck-stats");
+  if(stats) stats.textContent = `${known}/${CARDS.length} known · ${weak} marked for review`;
+}
 function renderCard(){
   const f = document.getElementById("flash");
   f.classList.remove("flipped");
+  f.classList.remove("known","weak");
   setTimeout(()=>{
     document.getElementById("flash-front").textContent = deck[cardIdx][0];
     document.getElementById("flash-back").textContent = deck[cardIdx][1];
+    const state = cardState();
+    const status = state[cardId(deck[cardIdx])];
+    if(status) f.classList.add(status);
   }, f.classList.contains("flipped") ? 250 : 0);
   document.getElementById("deck-count").textContent = `${cardIdx+1} / ${deck.length}`;
+  updateDeckStats();
 }
 function nextCard(){ cardIdx = (cardIdx+1) % deck.length; renderCard(); }
 function prevCard(){ cardIdx = (cardIdx-1+deck.length) % deck.length; renderCard(); }
 function shuffleDeck(){ deck.sort(()=>Math.random()-.5); cardIdx=0; renderCard(); }
+function hideCardAnswer(){ document.getElementById("flash").classList.remove("flipped"); }
+function markCard(status){
+  const state = cardState();
+  state[cardId(deck[cardIdx])] = status;
+  saveCardState(state);
+  if(status === "weak") deck.push(deck[cardIdx]);
+  nextCard();
+}
 document.addEventListener("keydown", e=>{
   if(!document.getElementById("flashcards").classList.contains("active")) return;
   if(e.key==="ArrowRight") nextCard();
@@ -2237,19 +2583,53 @@ const QUESTIONS = [
    e:"And it reaches PMs through packaged PM software — most PMs won't build AI, they'll meet it in their tools."},
 ];
 
-let qOrder=[], qIdx=0, qScore=0, qAnswered=false;
+let qOrder=[], qIdx=0, qScore=0, qAnswered=false, quizMode="all";
+function questionDifficulty(Q){
+  const topic = Q.t || "";
+  const text = `${Q.q} ${Q.e}`;
+  if(topic.includes("PM Basics") || topic.includes("Lifecycle") || topic.includes("Class quiz")) return "basic";
+  if(topic.includes("Papers")) return "research";
+  if(topic.includes("Report") || /(why|harmful|accountable|replace|critique|risk|deviation|recommendation|compare)/i.test(text)) return "examiner";
+  return "lecture";
+}
+function activeQuestionIndexes(){
+  const indexes = QUESTIONS.map((_,i)=>i);
+  if(quizMode === "all") return indexes;
+  return indexes.filter(i => questionDifficulty(QUESTIONS[i]) === quizMode);
+}
+function setQuizMode(mode,btn){
+  quizMode = mode;
+  document.querySelectorAll("#quiz-mode button").forEach(b => b.classList.remove("active"));
+  if(btn) btn.classList.add("active");
+  startQuiz();
+}
 function startQuiz(){
-  qOrder=[...QUESTIONS.keys()].sort(()=>Math.random()-.5);
+  qOrder=activeQuestionIndexes().sort(()=>Math.random()-.5);
   qIdx=0; qScore=0;
   document.getElementById("q-result").style.display="none";
   document.getElementById("q-body").style.display="block";
-  document.getElementById("q-meta").textContent=`· ${QUESTIONS.length} questions (⭐ = from your class quiz)`;
+  const labels = {
+    all:"mixed set",
+    basic:"basic definitions",
+    lecture:"lecture detail",
+    research:"research evidence",
+    examiner:"examiner critique"
+  };
+  document.getElementById("q-meta").textContent=`· ${qOrder.length} questions · ${labels[quizMode]}`;
   renderQuestion();
 }
 function renderQuestion(){
   qAnswered=false;
+  if(!qOrder.length){
+    document.getElementById("q-body").style.display="none";
+    document.getElementById("q-result").style.display="block";
+    document.getElementById("q-final").textContent="0 questions";
+    document.getElementById("q-verdict").textContent="No questions match this set yet.";
+    document.getElementById("q-best").textContent="";
+    return;
+  }
   const Q=QUESTIONS[qOrder[qIdx]];
-  document.getElementById("q-bar").style.width=`${(qIdx)/QUESTIONS.length*100}%`;
+  document.getElementById("q-bar").style.width=`${(qIdx)/qOrder.length*100}%`;
   document.getElementById("q-topic").textContent=Q.t;
   document.getElementById("q-text").textContent=Q.q;
   document.getElementById("q-explain").style.display="none";
@@ -2282,22 +2662,23 @@ function answer(i,btn){
 }
 function nextQuestion(){
   qIdx++;
-  if(qIdx>=QUESTIONS.length){ return finishQuiz(); }
+  if(qIdx>=qOrder.length){ return finishQuiz(); }
   renderQuestion();
 }
 function finishQuiz(){
   document.getElementById("q-body").style.display="none";
   document.getElementById("q-result").style.display="block";
   document.getElementById("q-bar").style.width="100%";
-  const pct=Math.round(qScore/QUESTIONS.length*100);
-  document.getElementById("q-final").textContent=`${qScore} / ${QUESTIONS.length} (${pct}%)`;
+  const pct=Math.round(qScore/qOrder.length*100);
+  document.getElementById("q-final").textContent=`${qScore} / ${qOrder.length} (${pct}%)`;
   document.getElementById("q-verdict").textContent=
     pct>=90?"🏆 Exam-ready — you'd top the class leaderboard!":
     pct>=70?"💪 Solid — review the questions you missed and rerun.":
     pct>=50?"📖 Getting there — reread Team & Events and Antipatterns.":
             "🌱 Start with Foundations and the flashcards, then come back.";
-  const best=Math.max(pct, +(localStorage.getItem("scrumQuizBest")||0));
-  localStorage.setItem("scrumQuizBest",best);
+  const bestKey = `scrumQuizBest:${quizMode}`;
+  const best=Math.max(pct, +(localStorage.getItem(bestKey)||0));
+  localStorage.setItem(bestKey,best);
   document.getElementById("q-best").textContent=`Personal best: ${best}%`;
 }
 startQuiz();
