@@ -112,9 +112,9 @@ a{color:var(--indigo);font-weight:600}
 .recall-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}
 .recall-status{display:inline-block;margin-left:6px;color:var(--muted);font-size:12px;font-weight:700}
 .map-grid{display:grid;grid-template-columns:1fr;gap:16px}
-.map-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;overflow-x:auto}
+.map-card{background:#fff;border:1.5px solid var(--border);border-radius:14px;padding:16px;overflow:hidden}
 .map-card h3{margin-top:0}
-.map-svg{min-width:660px;width:100%;height:auto}
+.map-svg{display:block;width:100%;max-width:100%;height:auto;min-width:0}
 .node{fill:#fff;stroke:#6366f1;stroke-width:2}
 .node.green{stroke:#22b573}.node.amber{stroke:#f59e0b}.node.red{stroke:#ef4444}.node.violet{stroke:#8b5cf6}
 .arrow{stroke:#64748b;stroke-width:2;fill:none;marker-end:url(#arrow)}
@@ -1990,11 +1990,11 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
   <div class="map-grid">
     <div class="map-card">
       <h3>Traditional PM → Stage-Gate → Agile-Stage-Gate</h3>
-      <svg class="map-svg" viewBox="0 0 760 260" role="img" aria-label="Concept map connecting traditional project management, Stage-Gate and Agile-Stage-Gate">
+      <svg class="map-svg" viewBox="0 0 760 280" role="img" aria-label="Concept map connecting traditional project management, Stage-Gate and Agile-Stage-Gate">
         <defs><marker id="mapArrow1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 z" fill="#64748b"/></marker></defs>
         <path d="M170 70 C225 70 245 70 300 70" class="arrow" marker-end="url(#mapArrow1)"/>
-        <path d="M460 70 C515 70 535 70 590 70" class="arrow" marker-end="url(#mapArrow1)"/>
-        <path d="M380 115 C380 150 380 165 380 198" class="arrow" marker-end="url(#mapArrow1)"/>
+        <path d="M460 70 C505 70 525 70 562 70" class="arrow" marker-end="url(#mapArrow1)"/>
+        <path d="M380 115 C380 148 380 164 380 192" class="arrow" marker-end="url(#mapArrow1)"/>
         <rect class="node" x="30" y="32" width="145" height="76" rx="12"/>
         <text class="map-text" x="102" y="62" text-anchor="middle">Traditional PM</text>
         <text class="map-sub" x="102" y="82" text-anchor="middle">upfront plan</text>
@@ -2003,13 +2003,14 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <text class="map-text" x="382" y="62" text-anchor="middle">Stage-Gate</text>
         <text class="map-sub" x="382" y="82" text-anchor="middle">stages add work</text>
         <text class="map-sub" x="382" y="96" text-anchor="middle">gates decide</text>
-        <rect class="node green" x="590" y="32" width="145" height="76" rx="12"/>
-        <text class="map-text" x="662" y="62" text-anchor="middle">Hybrid</text>
-        <text class="map-sub" x="662" y="82" text-anchor="middle">governance outside</text>
-        <text class="map-sub" x="662" y="96" text-anchor="middle">sprints inside</text>
-        <rect class="node violet" x="240" y="184" width="280" height="56" rx="12"/>
-        <text class="map-text" x="380" y="208" text-anchor="middle">Exam answer</text>
-        <text class="map-sub" x="380" y="226" text-anchor="middle">traditional and agile are complements when uncertainty meets investment control</text>
+        <rect class="node green" x="562" y="32" width="155" height="76" rx="12"/>
+        <text class="map-text" x="640" y="62" text-anchor="middle">Hybrid</text>
+        <text class="map-sub" x="640" y="82" text-anchor="middle">governance outside</text>
+        <text class="map-sub" x="640" y="96" text-anchor="middle">sprints inside</text>
+        <rect class="node violet" x="210" y="184" width="340" height="76" rx="12"/>
+        <text class="map-text" x="380" y="209" text-anchor="middle">Exam answer</text>
+        <text class="map-sub" x="380" y="229" text-anchor="middle">Traditional and agile complement each other</text>
+        <text class="map-sub" x="380" y="245" text-anchor="middle">when uncertainty meets investment control.</text>
       </svg>
       <div class="cap">Oral bridge: Stage-Gate preserves sponsor/governance decisions; agile adds learning cycles inside stages.</div>
     </div>
@@ -2035,9 +2036,10 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <text class="map-text" x="661" y="72" text-anchor="middle">Team dynamics</text>
         <text class="map-sub" x="661" y="92" text-anchor="middle">trust, cohesion</text>
         <text class="map-sub" x="661" y="106" text-anchor="middle">shared mental models</text>
-        <rect class="node amber" x="250" y="200" width="260" height="64" rx="12"/>
-        <text class="map-text" x="380" y="224" text-anchor="middle">Risk if missing</text>
-        <text class="map-sub" x="380" y="244" text-anchor="middle">hijacking, reporting dailies, PO absence, weak communication</text>
+        <rect class="node amber" x="240" y="198" width="280" height="78" rx="12"/>
+        <text class="map-text" x="380" y="223" text-anchor="middle">Risk if missing</text>
+        <text class="map-sub" x="380" y="244" text-anchor="middle">anti-patterns: hijacked dailies,</text>
+        <text class="map-sub" x="380" y="260" text-anchor="middle">absent PO, weak communication</text>
         <text class="map-sub" x="118" y="188" text-anchor="middle">Moe case</text>
         <text class="map-sub" x="642" y="188" text-anchor="middle">Tuckman + Spiegler</text>
       </svg>
@@ -2065,9 +2067,10 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <text class="map-text" x="661" y="72" text-anchor="middle">Risks</text>
         <text class="map-sub" x="661" y="92" text-anchor="middle">bias, surveillance</text>
         <text class="map-sub" x="661" y="106" text-anchor="middle">blind trust</text>
-        <rect class="node violet" x="250" y="204" width="260" height="64" rx="12"/>
-        <text class="map-text" x="380" y="228" text-anchor="middle">Defense line</text>
-        <text class="map-sub" x="380" y="248" text-anchor="middle">AI augments roles; humans keep judgment, ethics and accountability</text>
+        <rect class="node violet" x="230" y="200" width="300" height="78" rx="12"/>
+        <text class="map-text" x="380" y="225" text-anchor="middle">Defense line</text>
+        <text class="map-sub" x="380" y="246" text-anchor="middle">AI augments roles;</text>
+        <text class="map-sub" x="380" y="262" text-anchor="middle">humans keep judgment, ethics and accountability</text>
         <text class="map-sub" x="110" y="188" text-anchor="middle">Niederman</text>
         <text class="map-sub" x="648" y="188" text-anchor="middle">Marnewick</text>
       </svg>
@@ -2130,7 +2133,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
           <rect x="390" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="405" y="51" text-anchor="middle">S2</text>
           <rect x="432" y="36" width="30" height="22" rx="5" fill="#fff" stroke="#22b573"/><text class="map-sub" x="447" y="51" text-anchor="middle">S3</text>
         </g>
-        <text class="map-sub" x="380" y="286" text-anchor="middle">Gates keep investment decisions; sprints reduce uncertainty before each decision.</text>
+        <text class="map-sub" x="380" y="284" text-anchor="middle">Gates keep investment decisions;</text>
+        <text class="map-sub" x="380" y="300" text-anchor="middle">sprints reduce uncertainty before each gate.</text>
       </svg>
       <div class="cap">This is the “governance outside, agility inside” answer for Cooper and Agile-Stage-Gate.</div>
     </div>
@@ -2172,7 +2176,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <rect class="node green" x="505" y="94" width="170" height="60" rx="12"/><text class="map-text" x="590" y="119" text-anchor="middle">Increment</text><text class="map-sub" x="590" y="138" text-anchor="middle">usable, verified</text>
         <path d="M330 184 C330 220 112 220 112 158" class="arrow" marker-end="url(#figArrowDod)"/>
         <text class="map-sub" x="430" y="111" text-anchor="middle">yes</text>
-        <text class="map-sub" x="232" y="218" text-anchor="middle">no → back to Product Backlog / future work</text>
+        <text class="map-sub" x="226" y="212" text-anchor="middle">no → Product Backlog</text>
+        <text class="map-sub" x="226" y="228" text-anchor="middle">future work</text>
       </svg>
       <div class="cap">Key exam sentence: work that does not meet the DoD is not an Increment.</div>
     </div>
@@ -2189,7 +2194,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
           <rect class="node green" x="484" y="72" width="118" height="96" rx="12"/><text class="map-text" x="543" y="101" text-anchor="middle">Performing</text><text class="map-sub" x="543" y="126" text-anchor="middle">step back</text><text class="map-sub" x="543" y="143" text-anchor="middle">remove barriers</text>
           <rect class="node violet" x="634" y="72" width="98" height="96" rx="12"/><text class="map-text" x="683" y="101" text-anchor="middle">Adjourn</text><text class="map-sub" x="683" y="126" text-anchor="middle">close</text><text class="map-sub" x="683" y="143" text-anchor="middle">learn</text>
         </g>
-        <text class="map-sub" x="380" y="216" text-anchor="middle">SM style changes with maturity: more structure early, more autonomy later.</text>
+        <text class="map-sub" x="380" y="210" text-anchor="middle">SM style changes with maturity:</text>
+        <text class="map-sub" x="380" y="226" text-anchor="middle">more structure early, more autonomy later.</text>
       </svg>
       <div class="cap">Use this to connect Tuckman, Scrum Master behavior, and Spiegler’s leadership transfer.</div>
     </div>
@@ -2218,7 +2224,8 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <text class="map-text" x="630" y="252" text-anchor="middle">Trust & adoption</text>
         <text class="map-sub" x="630" y="268" text-anchor="middle">fear or blind trust</text>
         <text class="map-text" x="380" y="142" text-anchor="middle">Defense answer</text>
-        <text class="map-sub" x="380" y="162" text-anchor="middle">AI outputs are recommendations, not accountability transfers.</text>
+        <text class="map-sub" x="380" y="162" text-anchor="middle">AI outputs are recommendations;</text>
+        <text class="map-sub" x="380" y="178" text-anchor="middle">people keep accountability.</text>
       </svg>
       <div class="cap">This is the shortest strong answer to “what are the risks of AI in PM?”</div>
     </div>
@@ -2261,7 +2268,9 @@ Confidence:  E ± 1·SD ≈ 68%   ·   E ± 2·SD ≈ 95%   ·   E ± 3·SD ≈ 
         <rect class="node amber" x="376" y="88" width="130" height="58" rx="12"/><text class="map-text" x="441" y="113" text-anchor="middle">Communication</text><text class="map-sub" x="441" y="131" text-anchor="middle">formal vs frequent</text>
         <path d="M508 117 H564" class="arrow" marker-end="url(#figArrowBridge)"/>
         <rect class="node violet" x="568" y="88" width="160" height="58" rx="12"/><text class="map-text" x="648" y="113" text-anchor="middle">AI augmentation</text><text class="map-sub" x="648" y="131" text-anchor="middle">support, not replace</text>
-        <text class="map-sub" x="380" y="194" text-anchor="middle">Strong oral answer = report claim + lecture concept + source evidence + limitation.</text>
+        <text class="map-sub" x="380" y="186" text-anchor="middle">Strong oral answer = report claim</text>
+        <text class="map-sub" x="380" y="202" text-anchor="middle">+ lecture concept + source evidence</text>
+        <text class="map-sub" x="380" y="218" text-anchor="middle">+ limitation.</text>
       </svg>
       <div class="cap">Use this structure whenever an examiner asks a broad question: claim, concept, evidence, limitation.</div>
     </div>
