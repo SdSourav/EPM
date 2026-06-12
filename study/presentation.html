@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roles in Traditional &amp; Agile PM — 5-minute oral exam presentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1c2336; --indigo:#6366f1; --violet:#8b5cf6; --green:#22b573;
+  --amber:#f59e0b; --red:#ef4444; --raspberry:#c0386c; --muted:#64748b;
+  --bg:#eef1fb; --border:#dde3f5; --grad:linear-gradient(135deg,#6366f1,#8b5cf6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:Inter,-apple-system,sans-serif;background:#11142a;color:var(--ink);overflow:hidden}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;padding:6vh 7vw;background:#fff}
+.slide.active{display:flex;animation:fade .3s ease}
+@keyframes fade{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.slide .kicker{font-size:clamp(12px,1.4vw,16px);font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);margin-bottom:1.2vh}
+.slide h1{font-size:clamp(28px,4.6vw,56px);font-weight:900;letter-spacing:-.02em;line-height:1.12}
+.slide h1 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.slide h2{font-size:clamp(22px,3.4vw,42px);font-weight:900;letter-spacing:-.02em;margin-bottom:2.5vh}
+.slide h2 span{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:2vh}
+ul.big{list-style:none;font-size:clamp(15px,1.95vw,25px);line-height:1.55}
+ul.big li{margin-bottom:1.6vh;padding-left:1.3em;position:relative}
+ul.big li::before{content:"▸";position:absolute;left:0;color:var(--indigo);font-weight:800}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:3vw;align-items:start}
+.panel{border:2px solid var(--border);border-radius:18px;padding:2.2vh 1.8vw}
+.panel h3{font-size:clamp(15px,1.8vw,22px);font-weight:800;margin-bottom:1.2vh}
+.panel ul{list-style:none;font-size:clamp(13px,1.5vw,19px);line-height:1.5}
+.panel ul li{margin-bottom:.9vh;padding-left:1.2em;position:relative}
+.panel ul li::before{content:"·";position:absolute;left:.3em;font-weight:900}
+.panel.trad{border-color:var(--raspberry)} .panel.trad h3{color:var(--raspberry)}
+.panel.agile{border-color:var(--green)} .panel.agile h3{color:#15803d}
+table{width:100%;border-collapse:collapse;font-size:clamp(13px,1.6vw,20px)}
+th{background:rgba(99,102,241,.09);color:var(--indigo);text-align:left;padding:1.1vh 1vw;font-size:.85em;text-transform:uppercase;letter-spacing:.05em}
+td{padding:1.1vh 1vw;border-bottom:1px solid var(--border);vertical-align:top}
+td:first-child{font-weight:800;white-space:nowrap}
+.banner{background:var(--grad);color:#fff;border-radius:16px;padding:1.8vh 2vw;font-size:clamp(15px,2vw,24px);font-weight:800;text-align:center}
+.foot{display:flex;justify-content:space-between;align-items:center;font-size:clamp(11px,1.2vw,14px);color:var(--muted);font-weight:600;margin-top:2vh}
+.rq{background:rgba(99,102,241,.07);border-left:6px solid var(--indigo);border-radius:0 16px 16px 0;
+  padding:3vh 2.5vw;font-size:clamp(18px,2.6vw,32px);font-weight:700;line-height:1.45}
+.rq b{color:var(--indigo)}
+/* hud */
+#hud{position:fixed;bottom:14px;right:18px;z-index:50;display:flex;gap:10px;align-items:center;
+  font-size:13px;font-weight:700;color:#cdd3f5}
+#hud .chip{background:rgba(255,255,255,.12);border-radius:99px;padding:4px 12px;backdrop-filter:blur(6px)}
+#timer.warn{color:#fbbf24} #timer.over{color:#f87171}
+#progress{position:fixed;top:0;left:0;height:4px;background:var(--grad);z-index:60;transition:width .25s}
+/* speaker notes */
+#notes{position:fixed;left:0;right:0;bottom:0;background:#11142a;color:#e6e9ff;font-size:14.5px;line-height:1.55;
+  padding:14px 24px 18px;display:none;z-index:40;border-top:3px solid var(--violet);max-height:34vh;overflow:auto}
+#notes b{color:#a5b4fc}
+body.show-notes #notes{display:block}
+body.show-notes .slide{padding-bottom:36vh}
+.help{position:fixed;bottom:14px;left:18px;color:#8b93c4;font-size:12px;font-weight:600;z-index:50}
+/* diagrams inside slides */
+.diagram{ text-align:center }
+.diagram svg{max-width:100%;height:auto}
+@media print{
+  body{overflow:visible;background:#fff}
+  .slide{position:relative;display:flex !important;page-break-after:always;height:100vh}
+  #hud,#notes,#progress,.help{display:none !important}
+}
+</style>
+</head>
+<body>
+<div id="progress"></div>
+
+<!-- ============ SLIDE 1 · TITLE (≈20s) ============ -->
+<section class="slide active">
+  <div class="body" style="text-align:center;align-items:center">
+    <div class="kicker">Engineering Project Management · Oral exam · Aarhus BSS</div>
+    <h1>Roles in <span>Traditional</span> and <span>Agile</span> Project Management<br>— and the Possibility of <span>AI</span> Implementation</h1>
+    <p style="font-size:clamp(14px,1.8vw,22px);color:var(--muted);font-weight:600;margin-top:2.5vh">
+      Engineering Project Management · Final report 2026</p>
+  </div>
+  <div class="foot"><span></span><span>1 / 8</span></div>
+  <div class="note" hidden>Good morning. Today I present our report about roles in project management. We compare two approaches — the traditional way and the agile way — and we ask how Artificial Intelligence can change these roles.</div>
+</section>
+
+<!-- ============ SLIDE 2 · RQ & METHOD (≈30s) ============ -->
+<section class="slide">
+  <div class="kicker">Research question &amp; approach</div>
+  <h2>What we <span>asked</span> — and how</h2>
+  <div class="body">
+    <div class="rq">"How do <b>roles and responsibilities</b> differ between <b>traditional</b> and <b>agile</b> project management — and how can <b>Artificial Intelligence</b> influence these roles in modern organisations?"</div>
+    <ul class="big">
+      <li><b>Method:</b> literature-based comparative analysis — course curriculum + 17 academic sources</li>
+      <li><b>Why roles?</b> Roles are where method meets people — and where AI's impact actually lands</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Ch. 1–2</span><span>2 / 8</span></div>
+  <div class="note" hidden>Our research question is on the screen: how do roles and responsibilities differ between traditional and agile project management, and how can AI influence these roles? To answer it, we studied the course curriculum and seventeen academic sources. We did not collect our own data — that is one limit of our work. We focused on roles, because roles are where people, methods, and AI meet.</div>
+</section>
+
+<!-- ============ SLIDE 3 · TRADITIONAL (≈45s) ============ -->
+<section class="slide">
+  <div class="kicker">Chapter 3 · Traditional PM</div>
+  <h2>Traditional: <span>hierarchy, plan, gates</span></h2>
+  <div class="body">
+    <div class="cols">
+      <div class="diagram">
+        <svg viewBox="0 0 300 230" width="300" font-family="Inter,sans-serif">
+          <rect x="90" y="10" width="120" height="36" rx="9" fill="#c0386c"/><text x="150" y="33" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">SPONSOR</text>
+          <line x1="150" y1="46" x2="150" y2="66" stroke="#94a3b8" stroke-width="2"/>
+          <rect x="75" y="66" width="150" height="36" rx="9" fill="#6366f1"/><text x="150" y="89" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">PROJECT MANAGER</text>
+          <line x1="150" y1="102" x2="150" y2="122" stroke="#94a3b8" stroke-width="2"/>
+          <rect x="90" y="122" width="120" height="36" rx="9" fill="#8b5cf6"/><text x="150" y="145" text-anchor="middle" font-size="13" font-weight="800" fill="#fff">TEAM</text>
+          <rect x="8" y="66" width="56" height="36" rx="9" fill="#fff" stroke="#64748b" stroke-width="1.5"/><text x="36" y="84" text-anchor="middle" font-size="9" font-weight="700" fill="#1c2336">stake-</text><text x="36" y="95" text-anchor="middle" font-size="9" font-weight="700" fill="#1c2336">holders</text>
+          <line x1="64" y1="84" x2="75" y2="84" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+          <text x="150" y="190" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b">authority &amp; information flow ↓↑</text>
+          <text x="150" y="210" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b">the PM = the communication node</text>
+        </svg>
+      </div>
+      <ul class="big" style="font-size:clamp(17px,2.2vw,27px)">
+        <li><b>Waterfall + Stage-Gate</b> — gates = go / kill</li>
+        <li>Roles in a <b>hierarchy</b>: sponsor → PM → team</li>
+        <li>Strong <b>control</b> &amp; governance</li>
+        <li><b>Weakness: rigid</b> — hard to change</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Cooper 2016 · Havermans 2019 · Vrhovec 2015</span><span>3 / 8</span></div>
+  <div class="note" hidden>First, the traditional way. It is built on planning and control. The two main models are Waterfall and Stage-Gate. In Stage-Gate, at each gate a manager decides to continue or stop the project. The roles form a clear hierarchy. The sponsor is at the top — he gives the money and decides at the gates. The project manager is in the middle: he plans the work and handles all communication. The team does the work, and stakeholders shape the requirements. The strength is control and clear responsibility. The weakness is that it is rigid — hard to change.</div>
+</section>
+
+<!-- ============ SLIDE 4 · AGILE (≈45s) ============ -->
+<section class="slide">
+  <div class="kicker">Chapter 4 · Agile PM</div>
+  <h2>Agile: <span>flat, iterative, trust-based</span></h2>
+  <div class="body">
+    <div class="cols">
+      <div class="diagram">
+        <svg viewBox="0 0 300 230" width="300" font-family="Inter,sans-serif">
+          <circle cx="150" cy="115" r="55" fill="rgba(99,102,241,.07)" stroke="#6366f1" stroke-width="2.5"/>
+          <text x="150" y="111" text-anchor="middle" font-size="13" font-weight="800" fill="#6366f1">SPRINT</text>
+          <text x="150" y="127" text-anchor="middle" font-size="9.5" fill="#64748b">1–4 weeks · increment</text>
+          <rect x="95" y="8" width="110" height="32" rx="9" fill="#22b573"/><text x="150" y="29" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">PRODUCT OWNER</text>
+          <rect x="6" y="170" width="110" height="32" rx="9" fill="#8b5cf6"/><text x="61" y="191" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">SCRUM MASTER</text>
+          <rect x="184" y="170" width="110" height="32" rx="9" fill="#6366f1"/><text x="239" y="191" text-anchor="middle" font-size="11.5" font-weight="800" fill="#fff">DEVELOPERS</text>
+          <line x1="150" y1="40" x2="150" y2="58" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="80" y1="170" x2="113" y2="148" stroke="#94a3b8" stroke-width="1.5"/>
+          <line x1="222" y1="170" x2="189" y2="148" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="150" y="222" text-anchor="middle" font-size="11" font-weight="700" fill="#64748b">no hierarchy — three accountabilities around the work</text>
+        </svg>
+      </div>
+      <ul class="big" style="font-size:clamp(17px,2.2vw,27px)">
+        <li><b>Agile Manifesto 2001</b> — respond to change</li>
+        <li>Scrum: <b>sprints</b> · transparency · inspection · adaptation</li>
+        <li><b>PO</b> = value · <b>SM</b> = facilitates (no authority)</li>
+        <li><b>Developers</b> = self-organize, share work</li>
+      </ul>
+    </div>
+  </div>
+  <div class="foot"><span>Beck 2001 · Azanha 2017 · Kristensen &amp; Paasivaara 2021 · Spiegler 2019</span><span>4 / 8</span></div>
+  <div class="note" hidden>Now the agile way. It started in software, where requirements changed very fast. In 2001, the Agile Manifesto set out four values — for example, working software over documentation, and responding to change over following a plan. The most popular framework is Scrum. Scrum works in short cycles called sprints, and stands on three pillars: transparency, inspection, and adaptation. There is no hierarchy. Instead there are three roles: the Product Owner owns the value and the backlog; the Scrum Master helps the team but has no authority — he does not give orders; and the Developers organise their own work and share responsibility.</div>
+</section>
+
+<!-- ============ SLIDE 5 · COMPARISON (≈45s) ============ -->
+<section class="slide">
+  <div class="kicker">Chapter 5 · The comparison</div>
+  <h2>Same goal, <span>opposite mechanics</span></h2>
+  <div class="body">
+    <div class="diagram" style="margin:0">
+      <svg viewBox="0 0 780 250" width="780" font-family="Inter,sans-serif" style="max-height:46vh">
+        <!-- TRADITIONAL: scope fixed on top -->
+        <text x="195" y="26" text-anchor="middle" font-size="20" font-weight="900" fill="#c0386c">Traditional</text>
+        <polygon points="70,52 320,52 195,185" fill="#fbecf2" stroke="#c0386c" stroke-width="3" stroke-linejoin="round"/>
+        <text x="195" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="#c0386c">FIXED</text>
+        <text x="195" y="100" text-anchor="middle" font-size="20" font-weight="900" fill="#1c2336">Scope</text>
+        <text x="195" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#64748b">flexible: Time &amp; Budget</text>
+        <!-- AGILE: time & budget fixed on top -->
+        <text x="585" y="26" text-anchor="middle" font-size="20" font-weight="900" fill="#15803d">Agile</text>
+        <polygon points="460,52 710,52 585,185" fill="#eaf7f0" stroke="#22b573" stroke-width="3" stroke-linejoin="round"/>
+        <text x="585" y="78" text-anchor="middle" font-size="13" font-weight="800" fill="#15803d">FIXED</text>
+        <text x="585" y="100" text-anchor="middle" font-size="19" font-weight="900" fill="#1c2336">Time &amp; Budget</text>
+        <text x="585" y="210" text-anchor="middle" font-size="15" font-weight="700" fill="#64748b">flexible: Scope</text>
+      </svg>
+    </div>
+    <p style="text-align:center;font-size:clamp(13px,1.6vw,20px);color:var(--ink);font-weight:600;margin:.5vh 0 1.5vh">
+      Structure: hierarchy ↔ flat&nbsp;&nbsp;·&nbsp;&nbsp;Leadership: authority ↔ facilitation&nbsp;&nbsp;·&nbsp;&nbsp;Communication: formal ↔ face-to-face</p>
+    <div class="banner">Context decides — hybrids (Agile–Stage-Gate) combine both: governance outside, agility inside.</div>
+  </div>
+  <div class="foot"><span>McHugh 2012 · Moe 2010 · Shrivastava &amp; Rathod 2015 · Cooper 2016</span><span>5 / 8</span></div>
+  <div class="note" hidden>This compares the two. In structure, traditional is a hierarchy, agile is flat. In leadership, traditional gives authority to the manager and the gates, while agile leadership is facilitation that spreads to the team as it matures. Communication is formal in traditional, but frequent and face to face in agile — and that builds trust. The biggest difference is here: traditional fixes the scope and lets time and budget move; agile fixes time and budget, and lets the scope change. So which is better? It depends on the context. Stable projects fit traditional, uncertain projects fit agile, and many companies combine both in hybrids.</div>
+</section>
+
+<!-- ============ SLIDE 6 · AI (≈45s) ============ -->
+<section class="slide">
+  <div class="kicker">Chapter 6 · AI in project management</div>
+  <h2>AI lands on the <span>roles</span></h2>
+  <div class="body">
+    <div class="cols">
+      <div class="panel trad">
+        <h3>In traditional PM</h3>
+        <ul>
+          <li>Planning &amp; scheduling</li>
+          <li>Risk prediction (delays, overruns)</li>
+          <li>Resource allocation, reports</li>
+        </ul>
+      </div>
+      <div class="panel agile">
+        <h3>In agile PM</h3>
+        <ul>
+          <li>Scrum Master: summaries, impediments</li>
+          <li>Product Owner: backlog, user stories</li>
+          <li>Sprint planning from past data</li>
+        </ul>
+      </div>
+    </div>
+    <div class="diagram" style="margin:1.5vh 0 0">
+      <svg viewBox="0 0 820 120" width="820" font-family="Inter,sans-serif" style="max-height:20vh">
+        <rect x="10" y="20" width="320" height="80" rx="14" fill="#f0f1fe" stroke="#6366f1" stroke-width="2.5"/>
+        <text x="170" y="56" text-anchor="middle" font-size="19" font-weight="900" fill="#6366f1">AI does the DATA WORK</text>
+        <text x="170" y="80" text-anchor="middle" font-size="14" fill="#64748b">schedules · reports · risk · backlog</text>
+        <polygon points="350,40 410,40 410,28 440,60 410,92 410,80 350,80" fill="#f59e0b"/>
+        <rect x="460" y="20" width="350" height="80" rx="14" fill="#eaf7f0" stroke="#22b573" stroke-width="2.5"/>
+        <text x="635" y="56" text-anchor="middle" font-size="19" font-weight="900" fill="#15803d">HUMAN keeps JUDGEMENT</text>
+        <text x="635" y="80" text-anchor="middle" font-size="14" fill="#64748b">ethics · communication · leadership</text>
+      </svg>
+    </div>
+    <p style="text-align:center;font-size:clamp(14px,1.7vw,21px);font-weight:800;color:var(--ink);margin:.6vh 0 0">
+      = Augmented, not replaced — the manager becomes a decision facilitator</p>
+  </div>
+  <div class="foot"><span>Niederman 2021 · Dam 2019 · Barcaui &amp; Monat 2023</span><span>6 / 8</span></div>
+  <div class="note" hidden>This is my chapter — AI in project management. AI lands on the roles in both worlds. In traditional management, AI helps with the structured parts: it automates planning and scheduling, predicts risks like delays, and helps allocate resources. In agile, AI helps the Scrum Master with daily summaries and spotting repeated problems, and helps the Product Owner prioritise the backlog and write user stories. But the key message is this: AI does not replace people — it augments them. The manager becomes a decision facilitator. AI does the data work; the human keeps the judgement, the ethics, and the leadership. One warning: if AI is used to watch individual people, it can destroy the trust that agile needs.</div>
+</section>
+
+<!-- ============ SLIDE 7 · RISKS & OPPORTUNITIES (≈30s) ============ -->
+<section class="slide">
+  <div class="kicker">Chapter 6 · Challenges vs opportunities</div>
+  <h2>What could go <span>wrong — and right</span></h2>
+  <div class="body">
+    <div class="cols">
+      <div class="panel" style="border-color:var(--red)">
+        <h3 style="color:var(--red)">Risks</h3>
+        <ul>
+          <li><b>Ethics</b> — fairness, surveillance, accountability stays human</li>
+          <li><b>Data dependency</b> — bad data → bad recommendations</li>
+          <li><b>Trust &amp; adoption</b> — rejection AND blind trust are both dangerous</li>
+        </ul>
+      </div>
+      <div class="panel" style="border-color:var(--green)">
+        <h3 style="color:#15803d">Opportunities</h3>
+        <ul>
+          <li><b>Efficiency</b> — admin work automated away</li>
+          <li><b>Better decisions</b> — more data, patterns, foresight</li>
+          <li><b>Hybrid human–AI collaboration</b> — digital intelligence as the new PM skill (Marnewick)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Marnewick 2021</span><span>7 / 8</span></div>
+  <div class="note" hidden>With AI come risks and opportunities. The risks: ethics, like fairness and surveillance; data dependency — bad data gives bad results; and trust, because people may reject AI or trust it blindly. The opportunities: more efficiency, better decisions from more data, and a future where humans and AI work together. The important point: the human stays responsible — AI only gives recommendations.</div>
+</section>
+
+<!-- ============ SLIDE 8 · CONCLUSION (≈40s) ============ -->
+<section class="slide">
+  <div class="kicker">Chapter 7 · Conclusion</div>
+  <h2>Answering the <span>research question</span></h2>
+  <div class="body">
+    <ul class="big">
+      <li><b>Roles differ by design:</b> concentrated authority + formal communication vs distributed responsibility + trust built in ceremonies</li>
+      <li><b>Context decides the method</b> — stable scope → traditional · uncertainty → agile · both → hybrids</li>
+      <li><b>AI augments every role</b> — it automates the administrative layer and turns managers into decision facilitators, while judgment, ethics and leadership stay human</li>
+    </ul>
+    <div class="banner">AI changes <u>what the roles do</u> — not <u>why they exist</u>.&nbsp;&nbsp;Thank you — questions welcome.</div>
+  </div>
+  <div class="foot"><span>Engineering Project Management · 2026</span><span>8 / 8</span></div>
+  <div class="note" hidden>So, to answer our question. Roles differ by design: traditional concentrates authority and uses formal communication; agile spreads responsibility and builds trust. The context decides the method. And AI augments every role — it automates the administrative work and turns managers into decision facilitators, while judgement, ethics, and leadership stay human. In one line: AI changes what the roles do, not why they exist. Thank you — I am happy to take your questions.</div>
+</section>
+
+<div id="hud">
+  <span class="chip" id="timer" title="T to start/pause, R to reset">⏱ 0:00</span>
+  <span class="chip" id="count">1 / 8</span>
+</div>
+<div class="help">← → navigate · N notes · T timer · R reset · P print</div>
+<div id="notes"></div>
+
+<script>
+const slides=[...document.querySelectorAll(".slide")];
+let i=0;
+const notesBox=document.getElementById("notes");
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle("active",k===i));
+  document.getElementById("count").textContent=`${i+1} / ${slides.length}`;
+  document.getElementById("progress").style.width=((i+1)/slides.length*100)+"%";
+  const note=slides[i].querySelector(".note");
+  notesBox.innerHTML=note?note.innerHTML:"";
+}
+let t0=null,elapsed=0,tick=null;
+function fmt(s){return Math.floor(s/60)+":"+String(Math.floor(s%60)).padStart(2,"0")}
+function renderTimer(){
+  const s=elapsed+(t0?(Date.now()-t0)/1000:0);
+  const el=document.getElementById("timer");
+  el.textContent="⏱ "+fmt(s);
+  el.className="chip"+(s>300?" over":s>240?" warn":"");
+}
+function toggleTimer(){
+  if(t0){elapsed+=(Date.now()-t0)/1000;t0=null;clearInterval(tick)}
+  else{t0=Date.now();tick=setInterval(renderTimer,500)}
+}
+document.addEventListener("keydown",e=>{
+  if(e.key==="ArrowRight"||e.key===" "||e.key==="PageDown"){e.preventDefault();show(i+1)}
+  if(e.key==="ArrowLeft"||e.key==="PageUp"){e.preventDefault();show(i-1)}
+  if(e.key.toLowerCase()==="n")document.body.classList.toggle("show-notes");
+  if(e.key.toLowerCase()==="t")toggleTimer();
+  if(e.key.toLowerCase()==="r"){elapsed=0;t0=null;clearInterval(tick);renderTimer()}
+  if(e.key.toLowerCase()==="p")window.print();
+  if(e.key==="Home")show(0);
+  if(e.key==="End")show(slides.length-1);
+});
+document.addEventListener("click",e=>{
+  if(e.target.closest("#hud")){toggleTimer();return}
+  if(e.target.closest("a,#notes"))return;
+  show(e.clientX>innerWidth/3?i+1:i-1);
+});
+show(0);
+</script>
+</body>
+</html>

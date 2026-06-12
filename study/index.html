@@ -147,6 +147,45 @@ a{color:var(--indigo);font-weight:600}
 .exam-actions button.warn{border-color:rgba(239,68,68,.45);color:var(--red)}
 @media(max-width:720px){.recall-grid{grid-template-columns:1fr}.map-card{padding:12px}.quiz-controls{align-items:flex-start}}
 @media(max-width:720px){.exam-shell{grid-template-columns:1fr}.exam-timer{font-size:46px}}
+/* ---------------- mobile / phone responsive ---------------- */
+html{-webkit-text-size-adjust:100%}
+@media (max-width:760px){
+  header{padding:10px 13px;gap:8px 12px}
+  h1{font-size:24px;width:100%}
+  /* turn the long tab list into a swipeable strip instead of a tall wrapped block */
+  nav{flex-wrap:nowrap;overflow-x:auto;width:100%;gap:6px;padding-bottom:4px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  nav::-webkit-scrollbar{display:none}
+  nav button{flex:0 0 auto;white-space:nowrap;scroll-snap-align:center}
+  main{padding:18px 12px 64px}
+  .card{padding:16px 15px;border-radius:14px}
+  .card h2{font-size:19px}
+  .card h3{font-size:14px}
+  table{font-size:12.7px}
+  th{padding:7px 8px}
+  td{padding:7px 8px;overflow-wrap:anywhere}
+  .callout{font-size:13.3px;padding:11px 13px}
+  .scrum-flow{font-size:11.5px;padding:12px 12px}
+  .flash{height:300px}
+  .face{padding:18px;font-size:15px;overflow-y:auto}
+  .face.back{font-size:13.8px}
+  .anti,.paper-card{padding:13px 13px}
+  .map-card{padding:12px}
+  .exam-prompt{font-size:16px}
+}
+@media (max-width:420px){
+  h1{font-size:21px}
+  nav button{font-size:12px;padding:6px 11px}
+  .card{padding:14px 12px}
+  .card h2{font-size:17.5px}
+  table{font-size:11.8px}
+  th,td{padding:6px 6px}
+  .flash{height:330px}
+  .face{font-size:14.3px}
+  .exam-timer{font-size:40px}
+  .score-big{font-size:34px}
+  .deck-controls{flex-wrap:wrap;justify-content:center}
+}
 </style>
 </head>
 <body>
@@ -2533,6 +2572,7 @@ document.querySelectorAll("#nav button").forEach(btn => {
     document.querySelectorAll("section.tab").forEach(s => s.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById(btn.dataset.tab).classList.add("active");
+    btn.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});
     window.scrollTo({top:0});
   });
 });
